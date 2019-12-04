@@ -8,6 +8,7 @@ import awsconfig from '../aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
+
 Vue.config.productionTip = false
 
 new Vue({
