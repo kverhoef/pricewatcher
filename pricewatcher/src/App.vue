@@ -1,19 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <button @click="createNewTodo">Add Todo</button>
+
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import HelloWorld from './components/HelloWorld.vue';
 
-export default {
-  name: 'app',
+import API, {  graphqlOperation } from '@aws-amplify/api';
+// eslint-disable-next-line
+import { createBlog } from "./graphql/mutations";
+
+@Component({
   components: {
-    HelloWorld
+    HelloWorld,
+  },
+  methods :{
+      async createNewTodo(){
+          const todo = { name: "Use AppSync" }
+          await API.graphql(graphqlOperation(createBlog, { input: todo }))
+      }
   }
-}
+})
+export default class App extends Vue {}
 </script>
 
 <style>
