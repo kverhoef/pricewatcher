@@ -187,3 +187,39 @@ export const deleteComment = `mutation DeleteComment(
   }
 }
 `;
+export const createPricewatch = `mutation CreatePricewatch(
+  $input: CreatePricewatchInput!
+  $condition: ModelPricewatchConditionInput
+) {
+  createPricewatch(input: $input, condition: $condition) {
+    id
+    name
+    url
+    xpath
+  }
+}
+`;
+export const updatePricewatch = `mutation UpdatePricewatch(
+  $input: UpdatePricewatchInput!
+  $condition: ModelPricewatchConditionInput
+) {
+  updatePricewatch(input: $input, condition: $condition) {
+    id
+    name
+    url
+    xpath
+  }
+}
+`;
+export const deletePricewatch = `mutation DeletePricewatch(
+  $input: DeletePricewatchInput!
+  $condition: ModelPricewatchConditionInput
+) {
+  deletePricewatch(input: $input, condition: $condition) {
+    id
+    name
+    url
+    xpath
+  }
+}
+`;

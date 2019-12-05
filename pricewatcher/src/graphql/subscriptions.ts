@@ -160,3 +160,30 @@ export const onDeleteComment = `subscription OnDeleteComment {
   }
 }
 `;
+export const onCreatePricewatch = `subscription OnCreatePricewatch {
+  onCreatePricewatch {
+    id
+    name
+    url
+    xpath
+  }
+}
+`;
+export const onUpdatePricewatch = `subscription OnUpdatePricewatch {
+  onUpdatePricewatch {
+    id
+    name
+    url
+    xpath
+  }
+}
+`;
+export const onDeletePricewatch = `subscription OnDeletePricewatch {
+  onDeletePricewatch {
+    id
+    name
+    url
+    xpath
+  }
+}
+`;

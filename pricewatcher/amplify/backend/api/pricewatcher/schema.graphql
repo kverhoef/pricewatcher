@@ -14,3 +14,10 @@ type Comment @model {
   content: String
   post: Post @connection(name: "PostComments")
 }
+
+type Pricewatch @model {
+    id: ID!
+    name: String!
+    url: String!
+    xpath: String!
+}

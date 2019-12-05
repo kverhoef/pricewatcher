@@ -108,6 +108,33 @@ export type DeleteCommentInput = {
   id?: string | null,
 };
 
+export type CreatePricewatchInput = {
+  id?: string | null,
+  name: string,
+  url: string,
+  xpath: string,
+};
+
+export type ModelPricewatchConditionInput = {
+  name?: ModelStringInput | null,
+  url?: ModelStringInput | null,
+  xpath?: ModelStringInput | null,
+  and?: Array< ModelPricewatchConditionInput | null > | null,
+  or?: Array< ModelPricewatchConditionInput | null > | null,
+  not?: ModelPricewatchConditionInput | null,
+};
+
+export type UpdatePricewatchInput = {
+  id: string,
+  name?: string | null,
+  url?: string | null,
+  xpath?: string | null,
+};
+
+export type DeletePricewatchInput = {
+  id?: string | null,
+};
+
 export type ModelBlogFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
@@ -146,6 +173,16 @@ export type ModelCommentFilterInput = {
   and?: Array< ModelCommentFilterInput | null > | null,
   or?: Array< ModelCommentFilterInput | null > | null,
   not?: ModelCommentFilterInput | null,
+};
+
+export type ModelPricewatchFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  url?: ModelStringInput | null,
+  xpath?: ModelStringInput | null,
+  and?: Array< ModelPricewatchFilterInput | null > | null,
+  or?: Array< ModelPricewatchFilterInput | null > | null,
+  not?: ModelPricewatchFilterInput | null,
 };
 
 export type CreateBlogMutationVariables = {
@@ -388,6 +425,51 @@ export type DeleteCommentMutation = {
   } | null,
 };
 
+export type CreatePricewatchMutationVariables = {
+  input: CreatePricewatchInput,
+  condition?: ModelPricewatchConditionInput | null,
+};
+
+export type CreatePricewatchMutation = {
+  createPricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
+  } | null,
+};
+
+export type UpdatePricewatchMutationVariables = {
+  input: UpdatePricewatchInput,
+  condition?: ModelPricewatchConditionInput | null,
+};
+
+export type UpdatePricewatchMutation = {
+  updatePricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
+  } | null,
+};
+
+export type DeletePricewatchMutationVariables = {
+  input: DeletePricewatchInput,
+  condition?: ModelPricewatchConditionInput | null,
+};
+
+export type DeletePricewatchMutation = {
+  deletePricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
+  } | null,
+};
+
 export type GetBlogQueryVariables = {
   id: string,
 };
@@ -532,6 +614,40 @@ export type ListCommentsQuery = {
         id: string,
         title: string,
       } | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetPricewatchQueryVariables = {
+  id: string,
+};
+
+export type GetPricewatchQuery = {
+  getPricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
+  } | null,
+};
+
+export type ListPricewatchsQueryVariables = {
+  filter?: ModelPricewatchFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPricewatchsQuery = {
+  listPricewatchs:  {
+    __typename: "ModelPricewatchConnection",
+    items:  Array< {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -729,5 +845,35 @@ export type OnDeleteCommentSubscription = {
         nextToken: string | null,
       } | null,
     } | null,
+  } | null,
+};
+
+export type OnCreatePricewatchSubscription = {
+  onCreatePricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
+  } | null,
+};
+
+export type OnUpdatePricewatchSubscription = {
+  onUpdatePricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
+  } | null,
+};
+
+export type OnDeletePricewatchSubscription = {
+  onDeletePricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
   } | null,
 };

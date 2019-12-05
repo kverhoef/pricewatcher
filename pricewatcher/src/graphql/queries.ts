@@ -110,3 +110,28 @@ export const listComments = `query ListComments(
   }
 }
 `;
+export const getPricewatch = `query GetPricewatch($id: ID!) {
+  getPricewatch(id: $id) {
+    id
+    name
+    url
+    xpath
+  }
+}
+`;
+export const listPricewatchs = `query ListPricewatchs(
+  $filter: ModelPricewatchFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPricewatchs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      url
+      xpath
+    }
+    nextToken
+  }
+}
+`;
