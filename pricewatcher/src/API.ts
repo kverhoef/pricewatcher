@@ -6,53 +6,6 @@ export type CreateBlogInput = {
   name: string,
 };
 
-export type ModelBlogConditionInput = {
-  name?: ModelStringInput | null,
-  and?: Array< ModelBlogConditionInput | null > | null,
-  or?: Array< ModelBlogConditionInput | null > | null,
-  not?: ModelBlogConditionInput | null,
-};
-
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-};
-
 export type UpdateBlogInput = {
   id: string,
   name?: string | null,
@@ -66,13 +19,6 @@ export type CreatePostInput = {
   id?: string | null,
   title: string,
   postBlogId?: string | null,
-};
-
-export type ModelPostConditionInput = {
-  title?: ModelStringInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
 };
 
 export type UpdatePostInput = {
@@ -89,13 +35,6 @@ export type CreateCommentInput = {
   id?: string | null,
   content?: string | null,
   commentPostId?: string | null,
-};
-
-export type ModelCommentConditionInput = {
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
 };
 
 export type UpdateCommentInput = {
@@ -115,15 +54,6 @@ export type CreatePricewatchInput = {
   xpath: string,
 };
 
-export type ModelPricewatchConditionInput = {
-  name?: ModelStringInput | null,
-  url?: ModelStringInput | null,
-  xpath?: ModelStringInput | null,
-  and?: Array< ModelPricewatchConditionInput | null > | null,
-  or?: Array< ModelPricewatchConditionInput | null > | null,
-  not?: ModelPricewatchConditionInput | null,
-};
-
 export type UpdatePricewatchInput = {
   id: string,
   name?: string | null,
@@ -136,14 +66,14 @@ export type DeletePricewatchInput = {
 };
 
 export type ModelBlogFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
+  id?: ModelIDFilterInput | null,
+  name?: ModelStringFilterInput | null,
   and?: Array< ModelBlogFilterInput | null > | null,
   or?: Array< ModelBlogFilterInput | null > | null,
   not?: ModelBlogFilterInput | null,
 };
 
-export type ModelIDInput = {
+export type ModelIDFilterInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -154,32 +84,42 @@ export type ModelIDInput = {
   notContains?: string | null,
   between?: Array< string | null > | null,
   beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
+};
+
+export type ModelStringFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
 };
 
 export type ModelPostFilterInput = {
-  id?: ModelIDInput | null,
-  title?: ModelStringInput | null,
+  id?: ModelIDFilterInput | null,
+  title?: ModelStringFilterInput | null,
   and?: Array< ModelPostFilterInput | null > | null,
   or?: Array< ModelPostFilterInput | null > | null,
   not?: ModelPostFilterInput | null,
 };
 
 export type ModelCommentFilterInput = {
-  id?: ModelIDInput | null,
-  content?: ModelStringInput | null,
+  id?: ModelIDFilterInput | null,
+  content?: ModelStringFilterInput | null,
   and?: Array< ModelCommentFilterInput | null > | null,
   or?: Array< ModelCommentFilterInput | null > | null,
   not?: ModelCommentFilterInput | null,
 };
 
 export type ModelPricewatchFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  url?: ModelStringInput | null,
-  xpath?: ModelStringInput | null,
+  id?: ModelIDFilterInput | null,
+  name?: ModelStringFilterInput | null,
+  url?: ModelStringFilterInput | null,
+  xpath?: ModelStringFilterInput | null,
   and?: Array< ModelPricewatchFilterInput | null > | null,
   or?: Array< ModelPricewatchFilterInput | null > | null,
   not?: ModelPricewatchFilterInput | null,
@@ -187,7 +127,6 @@ export type ModelPricewatchFilterInput = {
 
 export type CreateBlogMutationVariables = {
   input: CreateBlogInput,
-  condition?: ModelBlogConditionInput | null,
 };
 
 export type CreateBlogMutation = {
@@ -209,7 +148,6 @@ export type CreateBlogMutation = {
 
 export type UpdateBlogMutationVariables = {
   input: UpdateBlogInput,
-  condition?: ModelBlogConditionInput | null,
 };
 
 export type UpdateBlogMutation = {
@@ -231,7 +169,6 @@ export type UpdateBlogMutation = {
 
 export type DeleteBlogMutationVariables = {
   input: DeleteBlogInput,
-  condition?: ModelBlogConditionInput | null,
 };
 
 export type DeleteBlogMutation = {
@@ -253,7 +190,6 @@ export type DeleteBlogMutation = {
 
 export type CreatePostMutationVariables = {
   input: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
 };
 
 export type CreatePostMutation = {
@@ -284,7 +220,6 @@ export type CreatePostMutation = {
 
 export type UpdatePostMutationVariables = {
   input: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
 };
 
 export type UpdatePostMutation = {
@@ -315,7 +250,6 @@ export type UpdatePostMutation = {
 
 export type DeletePostMutationVariables = {
   input: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
 };
 
 export type DeletePostMutation = {
@@ -346,7 +280,6 @@ export type DeletePostMutation = {
 
 export type CreateCommentMutationVariables = {
   input: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
 };
 
 export type CreateCommentMutation = {
@@ -373,7 +306,6 @@ export type CreateCommentMutation = {
 
 export type UpdateCommentMutationVariables = {
   input: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
 };
 
 export type UpdateCommentMutation = {
@@ -400,7 +332,6 @@ export type UpdateCommentMutation = {
 
 export type DeleteCommentMutationVariables = {
   input: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
 };
 
 export type DeleteCommentMutation = {
@@ -427,7 +358,6 @@ export type DeleteCommentMutation = {
 
 export type CreatePricewatchMutationVariables = {
   input: CreatePricewatchInput,
-  condition?: ModelPricewatchConditionInput | null,
 };
 
 export type CreatePricewatchMutation = {
@@ -442,7 +372,6 @@ export type CreatePricewatchMutation = {
 
 export type UpdatePricewatchMutationVariables = {
   input: UpdatePricewatchInput,
-  condition?: ModelPricewatchConditionInput | null,
 };
 
 export type UpdatePricewatchMutation = {
@@ -457,7 +386,6 @@ export type UpdatePricewatchMutation = {
 
 export type DeletePricewatchMutationVariables = {
   input: DeletePricewatchInput,
-  condition?: ModelPricewatchConditionInput | null,
 };
 
 export type DeletePricewatchMutation = {

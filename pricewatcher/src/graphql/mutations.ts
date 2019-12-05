@@ -1,11 +1,8 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = `mutation CreateBlog(
-  $input: CreateBlogInput!
-  $condition: ModelBlogConditionInput
-) {
-  createBlog(input: $input, condition: $condition) {
+export const createBlog = `mutation CreateBlog($input: CreateBlogInput!) {
+  createBlog(input: $input) {
     id
     name
     posts {
@@ -18,11 +15,8 @@ export const createBlog = `mutation CreateBlog(
   }
 }
 `;
-export const updateBlog = `mutation UpdateBlog(
-  $input: UpdateBlogInput!
-  $condition: ModelBlogConditionInput
-) {
-  updateBlog(input: $input, condition: $condition) {
+export const updateBlog = `mutation UpdateBlog($input: UpdateBlogInput!) {
+  updateBlog(input: $input) {
     id
     name
     posts {
@@ -35,11 +29,8 @@ export const updateBlog = `mutation UpdateBlog(
   }
 }
 `;
-export const deleteBlog = `mutation DeleteBlog(
-  $input: DeleteBlogInput!
-  $condition: ModelBlogConditionInput
-) {
-  deleteBlog(input: $input, condition: $condition) {
+export const deleteBlog = `mutation DeleteBlog($input: DeleteBlogInput!) {
+  deleteBlog(input: $input) {
     id
     name
     posts {
@@ -52,11 +43,8 @@ export const deleteBlog = `mutation DeleteBlog(
   }
 }
 `;
-export const createPost = `mutation CreatePost(
-  $input: CreatePostInput!
-  $condition: ModelPostConditionInput
-) {
-  createPost(input: $input, condition: $condition) {
+export const createPost = `mutation CreatePost($input: CreatePostInput!) {
+  createPost(input: $input) {
     id
     title
     blog {
@@ -76,11 +64,8 @@ export const createPost = `mutation CreatePost(
   }
 }
 `;
-export const updatePost = `mutation UpdatePost(
-  $input: UpdatePostInput!
-  $condition: ModelPostConditionInput
-) {
-  updatePost(input: $input, condition: $condition) {
+export const updatePost = `mutation UpdatePost($input: UpdatePostInput!) {
+  updatePost(input: $input) {
     id
     title
     blog {
@@ -100,11 +85,8 @@ export const updatePost = `mutation UpdatePost(
   }
 }
 `;
-export const deletePost = `mutation DeletePost(
-  $input: DeletePostInput!
-  $condition: ModelPostConditionInput
-) {
-  deletePost(input: $input, condition: $condition) {
+export const deletePost = `mutation DeletePost($input: DeletePostInput!) {
+  deletePost(input: $input) {
     id
     title
     blog {
@@ -124,11 +106,8 @@ export const deletePost = `mutation DeletePost(
   }
 }
 `;
-export const createComment = `mutation CreateComment(
-  $input: CreateCommentInput!
-  $condition: ModelCommentConditionInput
-) {
-  createComment(input: $input, condition: $condition) {
+export const createComment = `mutation CreateComment($input: CreateCommentInput!) {
+  createComment(input: $input) {
     id
     content
     post {
@@ -145,11 +124,8 @@ export const createComment = `mutation CreateComment(
   }
 }
 `;
-export const updateComment = `mutation UpdateComment(
-  $input: UpdateCommentInput!
-  $condition: ModelCommentConditionInput
-) {
-  updateComment(input: $input, condition: $condition) {
+export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!) {
+  updateComment(input: $input) {
     id
     content
     post {
@@ -166,11 +142,8 @@ export const updateComment = `mutation UpdateComment(
   }
 }
 `;
-export const deleteComment = `mutation DeleteComment(
-  $input: DeleteCommentInput!
-  $condition: ModelCommentConditionInput
-) {
-  deleteComment(input: $input, condition: $condition) {
+export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!) {
+  deleteComment(input: $input) {
     id
     content
     post {
@@ -187,11 +160,8 @@ export const deleteComment = `mutation DeleteComment(
   }
 }
 `;
-export const createPricewatch = `mutation CreatePricewatch(
-  $input: CreatePricewatchInput!
-  $condition: ModelPricewatchConditionInput
-) {
-  createPricewatch(input: $input, condition: $condition) {
+export const createPricewatch = `mutation CreatePricewatch($input: CreatePricewatchInput!) {
+  createPricewatch(input: $input) {
     id
     name
     url
@@ -199,11 +169,8 @@ export const createPricewatch = `mutation CreatePricewatch(
   }
 }
 `;
-export const updatePricewatch = `mutation UpdatePricewatch(
-  $input: UpdatePricewatchInput!
-  $condition: ModelPricewatchConditionInput
-) {
-  updatePricewatch(input: $input, condition: $condition) {
+export const updatePricewatch = `mutation UpdatePricewatch($input: UpdatePricewatchInput!) {
+  updatePricewatch(input: $input) {
     id
     name
     url
@@ -211,11 +178,8 @@ export const updatePricewatch = `mutation UpdatePricewatch(
   }
 }
 `;
-export const deletePricewatch = `mutation DeletePricewatch(
-  $input: DeletePricewatchInput!
-  $condition: ModelPricewatchConditionInput
-) {
-  deletePricewatch(input: $input, condition: $condition) {
+export const deletePricewatch = `mutation DeletePricewatch($input: DeletePricewatchInput!) {
+  deletePricewatch(input: $input) {
     id
     name
     url
