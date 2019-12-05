@@ -15,7 +15,12 @@ type Comment @model {
   post: Post @connection(name: "PostComments")
 }
 
-type Pricewatch @model {
+type Pricewatch @model @auth (
+    rules: [
+        { allow: private, provider: iam, operations: [read, create, delete] },
+        { allow: public }
+    ]
+){
     id: ID!
     name: String!
     url: String!

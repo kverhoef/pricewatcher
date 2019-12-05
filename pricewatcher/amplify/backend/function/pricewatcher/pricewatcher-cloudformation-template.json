@@ -4,6 +4,14 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"apipricewatcherGraphQLAPIIdOutput": {
+			"Type": "String",
+			"Default": "apipricewatcherGraphQLAPIIdOutput"
+		},
+		"apipricewatcherGraphQLAPIEndpointOutput": {
+			"Type": "String",
+			"Default": "apipricewatcherGraphQLAPIEndpointOutput"
 		}
 	},
 	"Conditions": {
@@ -50,6 +58,12 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
+						},
+						"API_PRICEWATCHER_GRAPHQLAPIIDOUTPUT": {
+							"Ref": "apipricewatcherGraphQLAPIIdOutput"
+						},
+						"API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT": {
+							"Ref": "apipricewatcherGraphQLAPIEndpointOutput"
 						}
 					}
 				},
@@ -63,7 +77,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-pricewatcher-devkevin-204627-deployment",
-					"S3Key": "amplify-builds/pricewatcher-2f382b4831594d41304b-build.zip"
+					"S3Key": "amplify-builds/pricewatcher-305a58546b356a377557-build.zip"
 				}
 			}
 		},
@@ -144,6 +158,59 @@
 									}
 								]
 							}
+						}
+					]
+				}
+			}
+		},
+		"AmplifyResourcesPolicy": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "amplify-lambda-execution-policy",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"appsync:Create*",
+								"appsync:StartSchemaCreation",
+								"appsync:GraphQL",
+								"appsync:Get*",
+								"appsync:List*",
+								"appsync:Update*",
+								"appsync:Delete*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:appsync:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":apis/",
+											{
+												"Ref": "apipricewatcherGraphQLAPIIdOutput"
+											},
+											"/*"
+										]
+									]
+								}
+							]
 						}
 					]
 				}

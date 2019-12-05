@@ -11,6 +11,8 @@ See the License for the specific language governing permissions and limitations 
 You can access the following resource attributes as environment variables from your Lambda function
 var environment = process.env.ENV
 var region = process.env.REGION
+var apiPricewatcherGraphQLAPIIdOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIIDOUTPUT
+var apiPricewatcherGraphQLAPIEndpointOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT
 
 Amplify Params - DO NOT EDIT */
 

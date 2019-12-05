@@ -12,7 +12,7 @@ const endpoint = new urlParse(appsyncUrl).hostname.toString();
 const graphqlQuery = require('./query.js').mutation;
 const apiKey = process.env.API_KEY;
 
-exports.handler = (event, context) => {
+exports.handler = async (event, context) => {
   console.log(process.env);
   const req = new AWS.HttpRequest(appsyncUrl, region);
 
