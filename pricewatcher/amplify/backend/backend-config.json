@@ -16,5 +16,12 @@
 				}
 			}
 		}
+	},
+	"function": {
+		"pricewatcher": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
 	}
 }
