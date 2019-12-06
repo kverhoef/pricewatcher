@@ -470,6 +470,14 @@ export type DeletePricewatchMutation = {
   } | null,
 };
 
+export type EchoQueryVariables = {
+  msg?: string | null,
+};
+
+export type EchoQuery = {
+  echo: string | null,
+};
+
 export type GetBlogQueryVariables = {
   id: string,
 };

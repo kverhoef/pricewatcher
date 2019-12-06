@@ -15,14 +15,13 @@ type Comment @model {
   post: Post @connection(name: "PostComments")
 }
 
-type Pricewatch @model @auth (
-    rules: [
-        { allow: private, provider: iam, operations: [read, create, delete] },
-        { allow: public }
-    ]
-){
+type Pricewatch @model {
     id: ID!
     name: String!
     url: String!
     xpath: String!
+}
+
+type Query {
+  echo(msg: String): String @function(name: "nightly-${env}")
 }

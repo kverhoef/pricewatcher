@@ -1,6 +1,10 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
+export const echo = `query Echo($msg: String) {
+  echo(msg: $msg)
+}
+`;
 export const getBlog = `query GetBlog($id: ID!) {
   getBlog(id: $id) {
     id

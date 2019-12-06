@@ -1,5 +1,6 @@
 <template>
     <div>
+        <button @click="testLambda()">Test lamda</button>
         <div class="d-flex">
             <!--<span class="wrap">ID</span>-->
             <span class="wrap">name</span>
@@ -20,10 +21,10 @@
 import { Component, Vue } from 'vue-property-decorator';
 import API, {  graphqlOperation } from '@aws-amplify/api';
 
-import { listPricewatchs } from '@/graphql/queries';
+import { listPricewatchs, echo } from '@/graphql/queries';
 import { deletePricewatch } from '@/graphql/mutations';
 import {Pricewatch} from "../models/models";
-import {DeletePricewatchInput} from "../API";
+import {DeletePricewatchInput, EchoQueryVariables} from "../API";
 import {GraphQLResult} from "@aws-amplify/api/lib/types";
 
 @Component({})
@@ -33,6 +34,11 @@ export default class PricewatchList extends Vue {
   created() {
     this.getData();
   }
+
+    async testLambda() {
+        const model: EchoQueryVariables = {msg: 'testmessage'};
+        await API.graphql(graphqlOperation(echo, model ))
+    }
 
   async removePricewatch(id: string) {
       const model: DeletePricewatchInput = {id: id};
