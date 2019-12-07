@@ -38,5 +38,25 @@
                 "pricewatcher": {}
             }
         }
+    },
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-pricewatcher-prod-195632-authRole",
+            "UnauthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-prod-195632-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-prod-195632-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-pricewatcher-prod-195632-deployment",
+            "UnauthRoleName": "amplify-pricewatcher-prod-195632-unauthRole",
+            "StackName": "amplify-pricewatcher-prod-195632",
+            "StackId": "arn:aws:cloudformation:eu-west-1:955631064926:stack/amplify-pricewatcher-prod-195632/49a5e4e0-1923-11ea-988b-0aac29486886",
+            "AmplifyAppId": "dakrx6u4nrazx"
+        },
+        "categories": {
+            "function": {
+                "pricewatcher": {},
+                "nightly": {},
+                "crawler": {}
+            }
+        }
     }
 }

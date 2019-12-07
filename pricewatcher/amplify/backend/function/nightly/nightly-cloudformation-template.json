@@ -76,7 +76,7 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-pricewatcher-devfab-182203-deployment",
+					"S3Bucket": "amplify-pricewatcher-prod-195632-deployment",
 					"S3Key": "amplify-builds/nightly-344e36636b72515a4d61-build.zip"
 				}
 			}
