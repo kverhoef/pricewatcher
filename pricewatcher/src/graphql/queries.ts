@@ -120,6 +120,14 @@ export const getPricewatch = `query GetPricewatch($id: ID!) {
     name
     url
     xpath
+    posts {
+      items {
+        id
+        date
+        value
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -134,6 +142,47 @@ export const listPricewatchs = `query ListPricewatchs(
       name
       url
       xpath
+      posts {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getWatchValue = `query GetWatchValue($id: ID!) {
+  getWatchValue(id: $id) {
+    id
+    date
+    value
+    values {
+      id
+      name
+      url
+      xpath
+      posts {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const listWatchValues = `query ListWatchValues(
+  $filter: ModelWatchValueFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listWatchValues(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      date
+      value
+      values {
+        id
+        name
+        url
+        xpath
+      }
     }
     nextToken
   }

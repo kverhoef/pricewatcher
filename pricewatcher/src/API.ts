@@ -135,6 +135,32 @@ export type DeletePricewatchInput = {
   id?: string | null,
 };
 
+export type CreateWatchValueInput = {
+  id?: string | null,
+  date: string,
+  value: string,
+  watchValueValuesId?: string | null,
+};
+
+export type ModelWatchValueConditionInput = {
+  date?: ModelStringInput | null,
+  value?: ModelStringInput | null,
+  and?: Array< ModelWatchValueConditionInput | null > | null,
+  or?: Array< ModelWatchValueConditionInput | null > | null,
+  not?: ModelWatchValueConditionInput | null,
+};
+
+export type UpdateWatchValueInput = {
+  id: string,
+  date?: string | null,
+  value?: string | null,
+  watchValueValuesId?: string | null,
+};
+
+export type DeleteWatchValueInput = {
+  id?: string | null,
+};
+
 export type ModelBlogFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
@@ -183,6 +209,15 @@ export type ModelPricewatchFilterInput = {
   and?: Array< ModelPricewatchFilterInput | null > | null,
   or?: Array< ModelPricewatchFilterInput | null > | null,
   not?: ModelPricewatchFilterInput | null,
+};
+
+export type ModelWatchValueFilterInput = {
+  id?: ModelIDInput | null,
+  date?: ModelStringInput | null,
+  value?: ModelStringInput | null,
+  and?: Array< ModelWatchValueFilterInput | null > | null,
+  or?: Array< ModelWatchValueFilterInput | null > | null,
+  not?: ModelWatchValueFilterInput | null,
 };
 
 export type CreateBlogMutationVariables = {
@@ -437,6 +472,16 @@ export type CreatePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
+    posts:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
   } | null,
 };
 
@@ -452,6 +497,16 @@ export type UpdatePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
+    posts:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
   } | null,
 };
 
@@ -467,6 +522,91 @@ export type DeletePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
+    posts:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+  } | null,
+};
+
+export type CreateWatchValueMutationVariables = {
+  input: CreateWatchValueInput,
+  condition?: ModelWatchValueConditionInput | null,
+};
+
+export type CreateWatchValueMutation = {
+  createWatchValue:  {
+    __typename: "WatchValue",
+    id: string,
+    date: string,
+    value: string,
+    values:  {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
+  } | null,
+};
+
+export type UpdateWatchValueMutationVariables = {
+  input: UpdateWatchValueInput,
+  condition?: ModelWatchValueConditionInput | null,
+};
+
+export type UpdateWatchValueMutation = {
+  updateWatchValue:  {
+    __typename: "WatchValue",
+    id: string,
+    date: string,
+    value: string,
+    values:  {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
+  } | null,
+};
+
+export type DeleteWatchValueMutationVariables = {
+  input: DeleteWatchValueInput,
+  condition?: ModelWatchValueConditionInput | null,
+};
+
+export type DeleteWatchValueMutation = {
+  deleteWatchValue:  {
+    __typename: "WatchValue",
+    id: string,
+    date: string,
+    value: string,
+    values:  {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
   } | null,
 };
 
@@ -638,6 +778,16 @@ export type GetPricewatchQuery = {
     name: string,
     url: string,
     xpath: string,
+    posts:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
   } | null,
 };
 
@@ -656,6 +806,60 @@ export type ListPricewatchsQuery = {
       name: string,
       url: string,
       xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetWatchValueQueryVariables = {
+  id: string,
+};
+
+export type GetWatchValueQuery = {
+  getWatchValue:  {
+    __typename: "WatchValue",
+    id: string,
+    date: string,
+    value: string,
+    values:  {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
+  } | null,
+};
+
+export type ListWatchValuesQueryVariables = {
+  filter?: ModelWatchValueFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListWatchValuesQuery = {
+  listWatchValues:  {
+    __typename: "ModelWatchValueConnection",
+    items:  Array< {
+      __typename: "WatchValue",
+      id: string,
+      date: string,
+      value: string,
+      values:  {
+        __typename: "Pricewatch",
+        id: string,
+        name: string,
+        url: string,
+        xpath: string,
+      } | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -863,6 +1067,16 @@ export type OnCreatePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
+    posts:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
   } | null,
 };
 
@@ -873,6 +1087,16 @@ export type OnUpdatePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
+    posts:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
   } | null,
 };
 
@@ -883,5 +1107,75 @@ export type OnDeletePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
+    posts:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+  } | null,
+};
+
+export type OnCreateWatchValueSubscription = {
+  onCreateWatchValue:  {
+    __typename: "WatchValue",
+    id: string,
+    date: string,
+    value: string,
+    values:  {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
+  } | null,
+};
+
+export type OnUpdateWatchValueSubscription = {
+  onUpdateWatchValue:  {
+    __typename: "WatchValue",
+    id: string,
+    date: string,
+    value: string,
+    values:  {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
+  } | null,
+};
+
+export type OnDeleteWatchValueSubscription = {
+  onDeleteWatchValue:  {
+    __typename: "WatchValue",
+    id: string,
+    date: string,
+    value: string,
+    values:  {
+      __typename: "Pricewatch",
+      id: string,
+      name: string,
+      url: string,
+      xpath: string,
+      posts:  {
+        __typename: "ModelWatchValueConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
   } | null,
 };

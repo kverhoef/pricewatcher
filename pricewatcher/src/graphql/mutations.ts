@@ -196,6 +196,14 @@ export const createPricewatch = `mutation CreatePricewatch(
     name
     url
     xpath
+    posts {
+      items {
+        id
+        date
+        value
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -208,6 +216,14 @@ export const updatePricewatch = `mutation UpdatePricewatch(
     name
     url
     xpath
+    posts {
+      items {
+        id
+        date
+        value
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -220,6 +236,74 @@ export const deletePricewatch = `mutation DeletePricewatch(
     name
     url
     xpath
+    posts {
+      items {
+        id
+        date
+        value
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createWatchValue = `mutation CreateWatchValue(
+  $input: CreateWatchValueInput!
+  $condition: ModelWatchValueConditionInput
+) {
+  createWatchValue(input: $input, condition: $condition) {
+    id
+    date
+    value
+    values {
+      id
+      name
+      url
+      xpath
+      posts {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updateWatchValue = `mutation UpdateWatchValue(
+  $input: UpdateWatchValueInput!
+  $condition: ModelWatchValueConditionInput
+) {
+  updateWatchValue(input: $input, condition: $condition) {
+    id
+    date
+    value
+    values {
+      id
+      name
+      url
+      xpath
+      posts {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deleteWatchValue = `mutation DeleteWatchValue(
+  $input: DeleteWatchValueInput!
+  $condition: ModelWatchValueConditionInput
+) {
+  deleteWatchValue(input: $input, condition: $condition) {
+    id
+    date
+    value
+    values {
+      id
+      name
+      url
+      xpath
+      posts {
+        nextToken
+      }
+    }
   }
 }
 `;

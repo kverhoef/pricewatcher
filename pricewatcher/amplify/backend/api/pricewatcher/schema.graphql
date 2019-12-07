@@ -20,6 +20,14 @@ type Pricewatch @model {
     name: String!
     url: String!
     xpath: String!
+    posts: [WatchValue] @connection(name: "WatchValue")
+}
+
+type WatchValue @model {
+    id: ID!
+    date: String!
+    value: String!
+    values: Pricewatch @connection(name: "WatchValue")
 }
 
 type Query {

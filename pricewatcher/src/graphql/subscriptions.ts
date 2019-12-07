@@ -166,6 +166,14 @@ export const onCreatePricewatch = `subscription OnCreatePricewatch {
     name
     url
     xpath
+    posts {
+      items {
+        id
+        date
+        value
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -175,6 +183,14 @@ export const onUpdatePricewatch = `subscription OnUpdatePricewatch {
     name
     url
     xpath
+    posts {
+      items {
+        id
+        date
+        value
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -184,6 +200,65 @@ export const onDeletePricewatch = `subscription OnDeletePricewatch {
     name
     url
     xpath
+    posts {
+      items {
+        id
+        date
+        value
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onCreateWatchValue = `subscription OnCreateWatchValue {
+  onCreateWatchValue {
+    id
+    date
+    value
+    values {
+      id
+      name
+      url
+      xpath
+      posts {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onUpdateWatchValue = `subscription OnUpdateWatchValue {
+  onUpdateWatchValue {
+    id
+    date
+    value
+    values {
+      id
+      name
+      url
+      xpath
+      posts {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onDeleteWatchValue = `subscription OnDeleteWatchValue {
+  onDeleteWatchValue {
+    id
+    date
+    value
+    values {
+      id
+      name
+      url
+      xpath
+      posts {
+        nextToken
+      }
+    }
   }
 }
 `;
