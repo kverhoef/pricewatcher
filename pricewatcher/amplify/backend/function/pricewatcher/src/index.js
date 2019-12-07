@@ -9,27 +9,23 @@ const urlParse = require("url").URL;
 const appsyncUrl = process.env.API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT;
 const region = process.env.REGION;
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
-const graphqlQuery = require('./query.js').mutation;
+const graphqlQuery = require('./query.js').query;
 const apiKey = process.env.API_KEY;
 
 exports.handler = async (event, context) => {
-  console.log(process.env);
   const req = new AWS.HttpRequest(appsyncUrl, region);
 
-  req.method = "GET";
+  req.method = "POST";
   req.headers.host = endpoint;
   req.headers["Content-Type"] = "application/json";
   req.body = JSON.stringify({
     query: graphqlQuery,
-    operationName: "listPricewatchs"
+    operationName: "ListPricewatchs"
   });
 
-  if (apiKey) {
-    req.headers["x-api-key"] = apiKey;
-  } else {
-    const signer = new AWS.Signers.V4(req, "appsync", true);
-    signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
-  }
+
+  const signer = new AWS.Signers.V4(req, "appsync", true);
+  signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
 
   const data = await new Promise((resolve, reject) => {
     const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
