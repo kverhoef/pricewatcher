@@ -51,6 +51,28 @@
 					]
 				}
 			]
+		},
+		"crawler": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "pricewatcher",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "nightly",
+					"attributes": [
+						"Name"
+					]
+				}
+			]
 		}
 	}
 }

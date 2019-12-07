@@ -1,0 +1,16 @@
+{
+    "permissions": {
+        "api": {
+            "pricewatcher": [
+                "create",
+                "read",
+                "update"
+            ]
+        },
+        "function": {
+            "nightly": [
+                "read"
+            ]
+        }
+    }
+}
