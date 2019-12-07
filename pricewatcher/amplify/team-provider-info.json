@@ -10,6 +10,11 @@
             "StackName": "amplify-pricewatcher-devkevin-204627",
             "StackId": "arn:aws:cloudformation:eu-west-1:955631064926:stack/amplify-pricewatcher-devkevin-204627/98ee19d0-1605-11ea-ad20-02d3b89dc706",
             "AmplifyAppId": "dakrx6u4nrazx"
+        },
+        "categories": {
+            "function": {
+                "pricewatcher": {}
+            }
         }
     }
 }

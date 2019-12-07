@@ -4,6 +4,7 @@ var environment = process.env.ENV
 var region = process.env.REGION
 var apiPricewatcherGraphQLAPIIdOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIIDOUTPUT
 var apiPricewatcherGraphQLAPIEndpointOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT
+var functionCrawlerName = process.env.FUNCTION_CRAWLER_NAME
 
 Amplify Params - DO NOT EDIT */
 
@@ -25,6 +26,7 @@ exports.handler = async (event) => {
     //         description: "Item Generated from Lambda"
     //     }
     // };
+
 
     req.method = "POST";
     req.headers.host = endpoint;

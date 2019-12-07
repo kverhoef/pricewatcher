@@ -12,6 +12,10 @@
 		"apipricewatcherGraphQLAPIEndpointOutput": {
 			"Type": "String",
 			"Default": "apipricewatcherGraphQLAPIEndpointOutput"
+		},
+		"functioncrawlerName": {
+			"Type": "String",
+			"Default": "functioncrawlerName"
 		}
 	},
 	"Conditions": {
@@ -64,6 +68,9 @@
 						},
 						"API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT": {
 							"Ref": "apipricewatcherGraphQLAPIEndpointOutput"
+						},
+						"FUNCTION_CRAWLER_NAME": {
+							"Ref": "functioncrawlerName"
 						}
 					}
 				},
@@ -77,7 +84,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-pricewatcher-devkevin-204627-deployment",
-					"S3Key": "amplify-builds/nightly-344e36636b72515a4d61-build.zip"
+					"S3Key": "amplify-builds/nightly-424373796b677556374d-build.zip"
 				}
 			}
 		},
@@ -87,12 +94,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"pricewatcherLambdaRole9622e8d9",
+						"pricewatcherLambdaRolea4628773",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"pricewatcherLambdaRole9622e8d9",
+									"pricewatcherLambdaRolea4628773",
 									"-",
 									{
 										"Ref": "env"
@@ -202,6 +209,35 @@
 												"Ref": "apipricewatcherGraphQLAPIIdOutput"
 											},
 											"/*"
+										]
+									]
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"lambda:Get*",
+								"lambda:List*",
+								"lambda:Invoke*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:lambda:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":function:",
+											{
+												"Ref": "functioncrawlerName"
+											}
 										]
 									]
 								}

@@ -1,12 +1,3 @@
-/* Amplify Params - DO NOT EDIT
-You can access the following resource attributes as environment variables from your Lambda function
-var environment = process.env.ENV
-var region = process.env.REGION
-var apiPricewatcherGraphQLAPIIdOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIIDOUTPUT
-var apiPricewatcherGraphQLAPIEndpointOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT
-var functionNightlyName = process.env.FUNCTION_NIGHTLY_NAME
-
-Amplify Params - DO NOT EDIT */
 
 const HTMLParser  = require('node-html-parser');
 const request = require('request');

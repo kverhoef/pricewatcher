@@ -5,54 +5,25 @@
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
-					"additionalAuthenticationProviders": [
-						{
-							"authenticationType": "API_KEY",
-							"apiKeyConfig": {
-								"description": "",
-								"apiKeyExpirationDays": 7
-							}
-						}
-					],
+					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
-						"authenticationType": "AWS_IAM"
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "",
+							"apiKeyExpirationDays": "7"
+						}
 					}
 				}
 			}
 		}
 	},
 	"function": {
-		"pricewatcher": {
+		"crawler": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "api",
-					"resourceName": "pricewatcher",
-					"attributes": [
-						"GraphQLAPIIdOutput",
-						"GraphQLAPIEndpointOutput"
-					]
-				}
-			]
+			"build": true
 		},
 		"nightly": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "api",
-					"resourceName": "pricewatcher",
-					"attributes": [
-						"GraphQLAPIIdOutput",
-						"GraphQLAPIEndpointOutput"
-					]
-				}
-			]
-		},
-		"crawler": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
@@ -67,7 +38,7 @@
 				},
 				{
 					"category": "function",
-					"resourceName": "nightly",
+					"resourceName": "crawler",
 					"attributes": [
 						"Name"
 					]
