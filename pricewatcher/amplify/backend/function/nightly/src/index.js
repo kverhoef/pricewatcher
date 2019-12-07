@@ -19,16 +19,8 @@ const apiKey = process.env.API_KEY;
 AWS.config.region = process.env.REGION;
 const lambda = new AWS.Lambda();
 
-exports.handler = async (event) => {
+exports.handler = function (event, context, callback) {
     const req = new AWS.HttpRequest(appsyncUrl, region);
-
-    // const item = {
-    //     input: {
-    //         name: "Lambda Item",
-    //         description: "Item Generated from Lambda"
-    //     }
-    // };
-
 
     req.method = "POST";
     req.headers.host = endpoint;
@@ -36,8 +28,6 @@ exports.handler = async (event) => {
     req.body = JSON.stringify({
         query: graphqlQuery,
         operationName: "ListPricewatchs",
-        // variables: item
-
     });
 
     if (apiKey) {
@@ -47,7 +37,7 @@ exports.handler = async (event) => {
         signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
     }
 
-    const data = await new Promise((resolve, reject) => {
+    const data = new Promise((resolve, reject) => {
         const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
             result.on('data', (data) => {
                 resolve(JSON.parse(data.toString()));
@@ -56,38 +46,53 @@ exports.handler = async (event) => {
 
         httpRequest.write(req.body);
         httpRequest.end();
-    });
+    }).then((data) => {
 
-    console.log(data)
+        console.log(data)
 
-    data.data.listPricewatchs.items.forEach((pricewatch) => {
-        console.log(pricewatch);
-        const payload = {
-            xpath: pricewatch.xpath,
-            url: pricewatch.url,
-            pricewatchId: pricewatch.id
-        };
+        const lambdaInvocations = [];
 
-        const params = {
-            FunctionName: process.env.FUNCTION_CRAWLER_NAME,
-            InvocationType: 'Event',
-            LogType: 'Tail',
-            Payload: JSON.stringify(payload)
-        };
+        data.data.listPricewatchs.items.forEach((pricewatch) => {
+            console.log(pricewatch);
+            const payload = {
+                xpath: pricewatch.xpath,
+                url: pricewatch.url,
+                pricewatchId: pricewatch.id
+            };
 
-        lambda.invoke(params, function(err, data) {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(process.env.FUNCTION_CRAWLER_NAME + ' said '+ data.Payload);
-            }
+            const params = {
+                FunctionName: process.env.FUNCTION_CRAWLER_NAME,
+                InvocationType: 'Event',
+                LogType: 'None',
+                Payload: JSON.stringify(payload)
+            };
+
+            lambdaInvocations.push(lambda.invoke(params, function(err, data) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    // console.log(process.env.FUNCTION_CRAWLER_NAME + ' said '+ data.Payload);
+                }
+            }));
+
         });
+        Promise.all(lambdaInvocations).then(() => {
+            callback(null, {
+                statusCode: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                body: ''
+            });
+        })
 
     });
 
 
-    return {
-        statusCode: 200,
-        body: data
-    };
+
+
+    // return {
+    //     statusCode: 200,
+    //     body: data
+    // };
 };

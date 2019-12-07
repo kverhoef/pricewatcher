@@ -53,8 +53,8 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
 
         const params = {
             FunctionName: process.env.FUNCTION_PRICEUPDATE_NAME,
-            InvocationType: 'RequestResponse', // Event
-            LogType: 'Tail',
+            InvocationType: 'Event', // Event
+            LogType: 'None',
             Payload: JSON.stringify(payload)
         };
 
@@ -65,13 +65,14 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
             } else {
                 console.log(process.env.FUNCTION_PRICEUPDATE_NAME + ' said '+ data.Payload);
             }
+        }).then(() => {
+            callback(null, responseTools.voidSuccessResponse());
         });
 
 
     });
 
 
-    callback(null, responseTools.voidSuccessResponse());
 
 };
 //

@@ -12,7 +12,11 @@
           <span class="wrap">{{pricewatch.name}}</span>
           <span class="wrap">{{pricewatch.url}}</span>
           <span class="wrap">{{pricewatch.xpath}}</span>
-          <span class="wrap">{{pricewatch.values.items.length}}</span>
+          <span class="wrap">
+            <div class="d-flex" v-for="value in pricewatch.values.items" :key="value.id">
+                {{value.value}}
+            </div>
+          </span>
           <button @click="removePricewatch(pricewatch.id)">Remove</button>
       </div>
     </div>

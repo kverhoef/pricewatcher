@@ -70,7 +70,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-pricewatcher-dev-184131-deployment",
-					"S3Key": "amplify-builds/crawler-303442496c6237715936-build.zip"
+					"S3Key": "amplify-builds/crawler-34426c7a707467687373-build.zip"
 				}
 			}
 		},
