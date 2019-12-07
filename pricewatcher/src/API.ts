@@ -1,16 +1,20 @@
 /* tslint:disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateBlogInput = {
+export type CreatePricewatchInput = {
   id?: string | null,
   name: string,
+  url: string,
+  xpath: string,
 };
 
-export type ModelBlogConditionInput = {
+export type ModelPricewatchConditionInput = {
   name?: ModelStringInput | null,
-  and?: Array< ModelBlogConditionInput | null > | null,
-  or?: Array< ModelBlogConditionInput | null > | null,
-  not?: ModelBlogConditionInput | null,
+  url?: ModelStringInput | null,
+  xpath?: ModelStringInput | null,
+  and?: Array< ModelPricewatchConditionInput | null > | null,
+  or?: Array< ModelPricewatchConditionInput | null > | null,
+  not?: ModelPricewatchConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -53,77 +57,6 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type UpdateBlogInput = {
-  id: string,
-  name?: string | null,
-};
-
-export type DeleteBlogInput = {
-  id?: string | null,
-};
-
-export type CreatePostInput = {
-  id?: string | null,
-  title: string,
-  postBlogId?: string | null,
-};
-
-export type ModelPostConditionInput = {
-  title?: ModelStringInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
-};
-
-export type UpdatePostInput = {
-  id: string,
-  title?: string | null,
-  postBlogId?: string | null,
-};
-
-export type DeletePostInput = {
-  id?: string | null,
-};
-
-export type CreateCommentInput = {
-  id?: string | null,
-  content?: string | null,
-  commentPostId?: string | null,
-};
-
-export type ModelCommentConditionInput = {
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
-};
-
-export type UpdateCommentInput = {
-  id: string,
-  content?: string | null,
-  commentPostId?: string | null,
-};
-
-export type DeleteCommentInput = {
-  id?: string | null,
-};
-
-export type CreatePricewatchInput = {
-  id?: string | null,
-  name: string,
-  url: string,
-  xpath: string,
-};
-
-export type ModelPricewatchConditionInput = {
-  name?: ModelStringInput | null,
-  url?: ModelStringInput | null,
-  xpath?: ModelStringInput | null,
-  and?: Array< ModelPricewatchConditionInput | null > | null,
-  or?: Array< ModelPricewatchConditionInput | null > | null,
-  not?: ModelPricewatchConditionInput | null,
-};
-
 export type UpdatePricewatchInput = {
   id: string,
   name?: string | null,
@@ -139,7 +72,7 @@ export type CreateWatchValueInput = {
   id?: string | null,
   date: string,
   value: string,
-  watchValueValuesId?: string | null,
+  watchValuePricewatchId?: string | null,
 };
 
 export type ModelWatchValueConditionInput = {
@@ -154,19 +87,21 @@ export type UpdateWatchValueInput = {
   id: string,
   date?: string | null,
   value?: string | null,
-  watchValueValuesId?: string | null,
+  watchValuePricewatchId?: string | null,
 };
 
 export type DeleteWatchValueInput = {
   id?: string | null,
 };
 
-export type ModelBlogFilterInput = {
+export type ModelPricewatchFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
-  and?: Array< ModelBlogFilterInput | null > | null,
-  or?: Array< ModelBlogFilterInput | null > | null,
-  not?: ModelBlogFilterInput | null,
+  url?: ModelStringInput | null,
+  xpath?: ModelStringInput | null,
+  and?: Array< ModelPricewatchFilterInput | null > | null,
+  or?: Array< ModelPricewatchFilterInput | null > | null,
+  not?: ModelPricewatchFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -185,32 +120,6 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelPostFilterInput = {
-  id?: ModelIDInput | null,
-  title?: ModelStringInput | null,
-  and?: Array< ModelPostFilterInput | null > | null,
-  or?: Array< ModelPostFilterInput | null > | null,
-  not?: ModelPostFilterInput | null,
-};
-
-export type ModelCommentFilterInput = {
-  id?: ModelIDInput | null,
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentFilterInput | null > | null,
-  or?: Array< ModelCommentFilterInput | null > | null,
-  not?: ModelCommentFilterInput | null,
-};
-
-export type ModelPricewatchFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  url?: ModelStringInput | null,
-  xpath?: ModelStringInput | null,
-  and?: Array< ModelPricewatchFilterInput | null > | null,
-  or?: Array< ModelPricewatchFilterInput | null > | null,
-  not?: ModelPricewatchFilterInput | null,
-};
-
 export type ModelWatchValueFilterInput = {
   id?: ModelIDInput | null,
   date?: ModelStringInput | null,
@@ -218,246 +127,6 @@ export type ModelWatchValueFilterInput = {
   and?: Array< ModelWatchValueFilterInput | null > | null,
   or?: Array< ModelWatchValueFilterInput | null > | null,
   not?: ModelWatchValueFilterInput | null,
-};
-
-export type CreateBlogMutationVariables = {
-  input: CreateBlogInput,
-  condition?: ModelBlogConditionInput | null,
-};
-
-export type CreateBlogMutation = {
-  createBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type UpdateBlogMutationVariables = {
-  input: UpdateBlogInput,
-  condition?: ModelBlogConditionInput | null,
-};
-
-export type UpdateBlogMutation = {
-  updateBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type DeleteBlogMutationVariables = {
-  input: DeleteBlogInput,
-  condition?: ModelBlogConditionInput | null,
-};
-
-export type DeleteBlogMutation = {
-  deleteBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type CreatePostMutationVariables = {
-  input: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type CreatePostMutation = {
-  createPost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type UpdatePostMutationVariables = {
-  input: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type UpdatePostMutation = {
-  updatePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type DeletePostMutationVariables = {
-  input: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type DeletePostMutation = {
-  deletePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type CreateCommentMutationVariables = {
-  input: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type CreateCommentMutation = {
-  createComment:  {
-    __typename: "Comment",
-    id: string,
-    content: string | null,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type UpdateCommentMutationVariables = {
-  input: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type UpdateCommentMutation = {
-  updateComment:  {
-    __typename: "Comment",
-    id: string,
-    content: string | null,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type DeleteCommentMutationVariables = {
-  input: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type DeleteCommentMutation = {
-  deleteComment:  {
-    __typename: "Comment",
-    id: string,
-    content: string | null,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-  } | null,
 };
 
 export type CreatePricewatchMutationVariables = {
@@ -472,7 +141,7 @@ export type CreatePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
-    posts:  {
+    values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
         __typename: "WatchValue",
@@ -497,7 +166,7 @@ export type UpdatePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
-    posts:  {
+    values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
         __typename: "WatchValue",
@@ -522,7 +191,7 @@ export type DeletePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
-    posts:  {
+    values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
         __typename: "WatchValue",
@@ -546,13 +215,13 @@ export type CreateWatchValueMutation = {
     id: string,
     date: string,
     value: string,
-    values:  {
+    pricewatch:  {
       __typename: "Pricewatch",
       id: string,
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
@@ -571,13 +240,13 @@ export type UpdateWatchValueMutation = {
     id: string,
     date: string,
     value: string,
-    values:  {
+    pricewatch:  {
       __typename: "Pricewatch",
       id: string,
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
@@ -596,13 +265,13 @@ export type DeleteWatchValueMutation = {
     id: string,
     date: string,
     value: string,
-    values:  {
+    pricewatch:  {
       __typename: "Pricewatch",
       id: string,
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
@@ -618,155 +287,6 @@ export type EchoQuery = {
   echo: string | null,
 };
 
-export type GetBlogQueryVariables = {
-  id: string,
-};
-
-export type GetBlogQuery = {
-  getBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type ListBlogsQueryVariables = {
-  filter?: ModelBlogFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListBlogsQuery = {
-  listBlogs:  {
-    __typename: "ModelBlogConnection",
-    items:  Array< {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetPostQueryVariables = {
-  id: string,
-};
-
-export type GetPostQuery = {
-  getPost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type ListPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListPostsQuery = {
-  listPosts:  {
-    __typename: "ModelPostConnection",
-    items:  Array< {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetCommentQueryVariables = {
-  id: string,
-};
-
-export type GetCommentQuery = {
-  getComment:  {
-    __typename: "Comment",
-    id: string,
-    content: string | null,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type ListCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListCommentsQuery = {
-  listComments:  {
-    __typename: "ModelCommentConnection",
-    items:  Array< {
-      __typename: "Comment",
-      id: string,
-      content: string | null,
-      post:  {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
 export type GetPricewatchQueryVariables = {
   id: string,
 };
@@ -778,7 +298,7 @@ export type GetPricewatchQuery = {
     name: string,
     url: string,
     xpath: string,
-    posts:  {
+    values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
         __typename: "WatchValue",
@@ -806,7 +326,7 @@ export type ListPricewatchsQuery = {
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
@@ -825,13 +345,13 @@ export type GetWatchValueQuery = {
     id: string,
     date: string,
     value: string,
-    values:  {
+    pricewatch:  {
       __typename: "Pricewatch",
       id: string,
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
@@ -853,7 +373,7 @@ export type ListWatchValuesQuery = {
       id: string,
       date: string,
       value: string,
-      values:  {
+      pricewatch:  {
         __typename: "Pricewatch",
         id: string,
         name: string,
@@ -865,201 +385,6 @@ export type ListWatchValuesQuery = {
   } | null,
 };
 
-export type OnCreateBlogSubscription = {
-  onCreateBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnUpdateBlogSubscription = {
-  onUpdateBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnDeleteBlogSubscription = {
-  onDeleteBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnCreatePostSubscription = {
-  onCreatePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnUpdatePostSubscription = {
-  onUpdatePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnDeletePostSubscription = {
-  onDeletePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts:  {
-        __typename: "ModelPostConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnCreateCommentSubscription = {
-  onCreateComment:  {
-    __typename: "Comment",
-    id: string,
-    content: string | null,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnUpdateCommentSubscription = {
-  onUpdateComment:  {
-    __typename: "Comment",
-    id: string,
-    content: string | null,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnDeleteCommentSubscription = {
-  onDeleteComment:  {
-    __typename: "Comment",
-    id: string,
-    content: string | null,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-      } | null,
-      comments:  {
-        __typename: "ModelCommentConnection",
-        nextToken: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
 export type OnCreatePricewatchSubscription = {
   onCreatePricewatch:  {
     __typename: "Pricewatch",
@@ -1067,7 +392,7 @@ export type OnCreatePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
-    posts:  {
+    values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
         __typename: "WatchValue",
@@ -1087,7 +412,7 @@ export type OnUpdatePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
-    posts:  {
+    values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
         __typename: "WatchValue",
@@ -1107,7 +432,7 @@ export type OnDeletePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
-    posts:  {
+    values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
         __typename: "WatchValue",
@@ -1126,13 +451,13 @@ export type OnCreateWatchValueSubscription = {
     id: string,
     date: string,
     value: string,
-    values:  {
+    pricewatch:  {
       __typename: "Pricewatch",
       id: string,
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
@@ -1146,13 +471,13 @@ export type OnUpdateWatchValueSubscription = {
     id: string,
     date: string,
     value: string,
-    values:  {
+    pricewatch:  {
       __typename: "Pricewatch",
       id: string,
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
@@ -1166,13 +491,13 @@ export type OnDeleteWatchValueSubscription = {
     id: string,
     date: string,
     value: string,
-    values:  {
+    pricewatch:  {
       __typename: "Pricewatch",
       id: string,
       name: string,
       url: string,
       xpath: string,
-      posts:  {
+      values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,

@@ -16,6 +16,8 @@ const region = process.env.REGION;
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
 const graphqlQuery = require('./query.js').query;
 const apiKey = process.env.API_KEY;
+AWS.config.region = process.env.REGION;
+const lambda = new AWS.Lambda();
 
 exports.handler = async (event) => {
     const req = new AWS.HttpRequest(appsyncUrl, region);
@@ -55,6 +57,34 @@ exports.handler = async (event) => {
         httpRequest.write(req.body);
         httpRequest.end();
     });
+
+    console.log(data)
+
+    data.data.listPricewatchs.items.forEach((pricewatch) => {
+        console.log(pricewatch);
+        const payload = {
+            xpath: pricewatch.xpath,
+            url: pricewatch.url,
+            pricewatchId: pricewatch.id
+        };
+
+        const params = {
+            FunctionName: process.env.FUNCTION_CRAWLER_NAME,
+            InvocationType: 'Event',
+            LogType: 'Tail',
+            Payload: JSON.stringify(payload)
+        };
+
+        lambda.invoke(params, function(err, data) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(process.env.FUNCTION_CRAWLER_NAME + ' said '+ data.Payload);
+            }
+        });
+
+    });
+
 
     return {
         statusCode: 200,

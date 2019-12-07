@@ -2,16 +2,17 @@
     <div>
         <button @click="testLambda()">Test lamda</button>
         <div class="d-flex">
-            <!--<span class="wrap">ID</span>-->
+            <span class="wrap">ID</span>
             <span class="wrap">name</span>
             <span class="wrap">url</span>
             <span class="wrap">xpath</span>
         </div>
       <div class="d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">
-          <!--<span class="wrap">{{pricewatch.id}}</span>-->
+          <span class="wrap">{{pricewatch.id}}</span>
           <span class="wrap">{{pricewatch.name}}</span>
           <span class="wrap">{{pricewatch.url}}</span>
           <span class="wrap">{{pricewatch.xpath}}</span>
+          <span class="wrap">{{pricewatch.values.items.length}}</span>
           <button @click="removePricewatch(pricewatch.id)">Remove</button>
       </div>
     </div>

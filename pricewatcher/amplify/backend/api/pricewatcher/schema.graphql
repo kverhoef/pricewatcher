@@ -1,33 +1,16 @@
-type Blog @model {
-  id: ID!
-  name: String!
-  posts: [Post] @connection(name: "BlogPosts")
-}
-type Post @model {
-  id: ID!
-  title: String!
-  blog: Blog @connection(name: "BlogPosts")
-  comments: [Comment] @connection(name: "PostComments")
-}
-type Comment @model {
-  id: ID!
-  content: String
-  post: Post @connection(name: "PostComments")
-}
-
 type Pricewatch @model {
     id: ID!
     name: String!
     url: String!
     xpath: String!
-    posts: [WatchValue] @connection(name: "WatchValue")
+    values: [WatchValue] @connection(name: "WatchValue")
 }
 
 type WatchValue @model {
     id: ID!
     date: String!
     value: String!
-    values: Pricewatch @connection(name: "WatchValue")
+    pricewatch: Pricewatch @connection(name: "WatchValue")
 }
 
 type Query {

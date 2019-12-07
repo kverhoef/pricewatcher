@@ -4,6 +4,10 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"functionpriceupdateName": {
+			"Type": "String",
+			"Default": "functionpriceupdateName"
 		}
 	},
 	"Conditions": {
@@ -50,6 +54,9 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
+						},
+						"FUNCTION_PRICEUPDATE_NAME": {
+							"Ref": "functionpriceupdateName"
 						}
 					}
 				},
@@ -62,8 +69,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-pricewatcher-devkevin-204627-deployment",
-					"S3Key": "amplify-builds/crawler-4d4861322f436c435348-build.zip"
+					"S3Bucket": "amplify-pricewatcher-dev-184131-deployment",
+					"S3Key": "amplify-builds/crawler-303442496c6237715936-build.zip"
 				}
 			}
 		},
@@ -73,12 +80,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"pricewatcherLambdaRole81526dff",
+						"pricewatcherLambdaRoledfc1111c",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"pricewatcherLambdaRole81526dff",
+									"pricewatcherLambdaRoledfc1111c",
 									"-",
 									{
 										"Ref": "env"
@@ -144,6 +151,54 @@
 									}
 								]
 							}
+						}
+					]
+				}
+			}
+		},
+		"AmplifyResourcesPolicy": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "amplify-lambda-execution-policy",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"lambda:Get*",
+								"lambda:List*",
+								"lambda:Invoke*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:lambda:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":function:",
+											{
+												"Ref": "functionpriceupdateName"
+											}
+										]
+									]
+								}
+							]
 						}
 					]
 				}

@@ -1,1 +1,9 @@
-{}
+{
+    "permissions": {
+        "function": {
+            "priceupdate": [
+                "read"
+            ]
+        }
+    }
+}

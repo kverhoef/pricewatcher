@@ -35,5 +35,25 @@ module.exports = {
         }
       }
     }
+    `,
+    createWatchValue: `mutation CreateWatchValue(
+      $input: CreateWatchValueInput!
+      $condition: ModelWatchValueConditionInput
+    ) {
+      createWatchValue(input: $input, condition: $condition) {
+        id
+        date
+        value
+        pricewatch {
+          id
+          name
+          url
+          xpath
+          values {
+            nextToken
+          }
+        }
+      }
+    }
     `
 }
