@@ -3,7 +3,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
-        <a class="navbar-brand" href="index.html">Pricewatcher</a>
+        <router-link to="/" class="navbar-brand">Pricewatcher</router-link>
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span><i class="fas fa-bars"></i></span>
         </button>
@@ -20,14 +20,6 @@
       </div>
     </nav>
 
-    <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-md-12">
-          <h1 class="heading m-0 mt-2 mb-2">Active watches</h1>
-        </div>
-      </div>
-    </div>
-
     <router-view class="view"></router-view>
 
   </div>
@@ -38,6 +30,7 @@
 import { Component } from 'vue-property-decorator';
 import PricewatchList from './components/PricewatchList.vue';
 import NewPricewatch from './components/NewPricewatch.vue';
+import PricewatchDetails from './components/PricewatchDetails.vue';
 import Vue from 'vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/css/font-awesome.css'
@@ -53,6 +46,7 @@ const router = new VueRouter({
     routes: [
         { path: '/', component: PricewatchList },
         { path: '/new', component: NewPricewatch },
+        { path: '/detail/:id', component: PricewatchDetails }
     ]
 });
 

@@ -1,19 +1,28 @@
 <template>
     <div>
         <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="heading m-0 mt-2 mb-2">Active watches</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
 
             <div class="row d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">
                 <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 pl-3 border bg-white d-flex">
                     <div class="flex-grow-1 flex-schrink-1 d-flex align-items-center title mr-2">
                         <div class="d-flex flex-column">
-                            <span>{{pricewatch.name}}</span>
-                            <a class="url" href="" target="_blank">{{pricewatch.url}}</a>
+                            <span><router-link :to="{ path: '/detail/' + pricewatch.id, params: {id: pricewatch.id } }" class="nav-link">{{pricewatch.name}}</router-link></span>
+                            <a class="url" :href="pricewatch.url" target="_blank">{{pricewatch.url}}</a>
                         </div>
                     </div>
                     <div class="flex-grow-1 flex-schrink-0 text-right">
                       <span class="price text-primary">
                           <!--<sup class="text-danger">+12.12</sup>-->
-                          <!--{{pricewatch.values}}-->Test
+                          <!--{{pricewatch.values}}-->
+                          {{pricewatch.values.items[pricewatch.values.items.length-1].value}}
                       </span>
                     </div>
                     <div class="pl-3">
@@ -22,31 +31,30 @@
                 </div>
 
             </div>
-            <div>
-                <button type="button" class="btn btn-light">Add watch</button>
-            </div>
+            <!--<div>-->
+                <!--<button type="button" class="btn btn-light">Add watch</button>-->
+            <!--</div>-->
         </div>
 
-
-        <button @click="testLambda()">Test lamda</button>
-        <div class="d-flex">
-            <span class="wrap">ID</span>
-            <span class="wrap">name</span>
-            <span class="wrap">url</span>
-            <span class="wrap">xpath</span>
-        </div>
-      <div class="d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">
-          <span class="wrap">{{pricewatch.id}}</span>
-          <span class="wrap">{{pricewatch.name}}</span>
-          <span class="wrap">{{pricewatch.url}}</span>
-          <span class="wrap">{{pricewatch.xpath}}</span>
-          <span class="wrap">
-            <div class="d-flex" v-for="value in pricewatch.values.items" :key="value.id">
-                {{value.value}}
-            </div>
-          </span>
-          <button @click="removePricewatch(pricewatch.id)">Remove</button>
-      </div>
+        <!--<button @click="testLambda()">Test lamda</button>-->
+        <!--<div class="d-flex">-->
+            <!--<span class="wrap">ID</span>-->
+            <!--<span class="wrap">name</span>-->
+            <!--<span class="wrap">url</span>-->
+            <!--<span class="wrap">xpath</span>-->
+        <!--</div>-->
+      <!--<div class="d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">-->
+          <!--<span class="wrap">{{pricewatch.id}}</span>-->
+          <!--<span class="wrap">{{pricewatch.name}}</span>-->
+          <!--<span class="wrap">{{pricewatch.url}}</span>-->
+          <!--<span class="wrap">{{pricewatch.xpath}}</span>-->
+          <!--<span class="wrap">-->
+            <!--<div class="d-flex" v-for="value in pricewatch.values.items" :key="value.id">-->
+                <!--{{value.value}}-->
+            <!--</div>-->
+          <!--</span>-->
+          <!--<button @click="removePricewatch(pricewatch.id)">Remove</button>-->
+      <!--</div>-->
     </div>
 </template>
 
@@ -60,7 +68,9 @@ import {Pricewatch} from "../models/models";
 import {DeletePricewatchInput, EchoQueryVariables} from "../API";
 import {GraphQLResult} from "@aws-amplify/api/lib/types";
 
-@Component({})
+@Component({
+
+})
 export default class PricewatchList extends Vue {
   pricewatchList: Pricewatch[] = [];
 
@@ -73,12 +83,6 @@ export default class PricewatchList extends Vue {
         await API.graphql(graphqlOperation(echo, model ))
     }
 
-  async removePricewatch(id: string) {
-      const model: DeletePricewatchInput = {id: id};
-      await API.graphql(graphqlOperation(deletePricewatch, { input: model } ))
-      this.getData();
-  }
-
   getData(){
     (API.graphql(graphqlOperation(listPricewatchs)) as Promise<GraphQLResult>).then((result: any) => {
         this.pricewatchList = result.data.listPricewatchs.items;
@@ -88,19 +92,6 @@ export default class PricewatchList extends Vue {
 }
 </script>
 
-<style>
-    .d-flex {
-        display: flex;
-    }
+<style scoped>
 
-    .wrap {
-        margin: 0 1em;
-        text-align: left;
-        width: 100%;
-        flex-grow: 1;
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 </style>
