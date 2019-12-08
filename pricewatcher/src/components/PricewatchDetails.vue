@@ -15,7 +15,8 @@
                 </div>
                 <div >
                     <!--{{$route.params}}-->
-                    <chart v-if="pricewatch.values !== undefined && pricewatch.values.length" :chart-data="pricewatch.values.items"></chart>
+
+                    <chart v-if="pricewatch.values !== undefined && pricewatch.values.items.length" :chart-data="pricewatch.values.items"></chart>
                 </div>
 
                 <button @click="deletePricewatch()" class="btn btn-danger">Remove</button>
