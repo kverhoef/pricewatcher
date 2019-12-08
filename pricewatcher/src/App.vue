@@ -1,7 +1,6 @@
 <template>
   <div id="app">
 
-
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
         <a class="navbar-brand" href="index.html">Pricewatcher</a>
@@ -10,8 +9,12 @@
         </button>
         <div class="collapse navbar-collapse" id="probootstrap-navbar">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="#section-home">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="#section-features">Features</a></li>
+            <li class="nav-item">
+              <router-link to="/" class="nav-link">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/new" class="nav-link">New</router-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -25,25 +28,36 @@
       </div>
     </div>
 
-    <pricewatch-list></pricewatch-list>
-    <new-pricewatch></new-pricewatch>
+    <router-view class="view"></router-view>
 
   </div>
 
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import PricewatchList from './components/PricewatchList.vue';
 import NewPricewatch from './components/NewPricewatch.vue';
+import Vue from 'vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/css/font-awesome.css'
+import VueRouter from 'vue-router'
+import path from 'path';
+const __dirname = path.resolve();
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    mode: 'history',
+    base: __dirname,
+    routes: [
+        { path: '/', component: PricewatchList },
+        { path: '/new', component: NewPricewatch },
+    ]
+});
 
 @Component({
-  components: {
-      NewPricewatch,
-      PricewatchList,
-  }
+  router
 })
 export default class App extends Vue {
 
