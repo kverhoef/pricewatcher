@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="flex-grow-1 flex-schrink-0 text-right">
-                      <span class="price text-primary">
+                      <span class="price text-primary" v-if="pricewatch.values !== undefined && pricewatch.values.items.length">
                           <!--<sup class="text-danger">+12.12</sup>-->
                           <!--{{pricewatch.values}}-->
                           {{pricewatch.values.items[pricewatch.values.items.length-1].value}}

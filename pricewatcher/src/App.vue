@@ -65,7 +65,10 @@ export default class App extends Vue {
     background-color: #f2f4f9;
     color: #444;
     background: linear-gradient(45deg,#665fee 0%,#27c2de 100%);
+    min-height: 100vh;
   }
+
+
 
   .title {
     font-weight: bold;
