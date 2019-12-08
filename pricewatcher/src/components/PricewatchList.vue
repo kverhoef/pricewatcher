@@ -1,5 +1,33 @@
 <template>
     <div>
+        <div class="container">
+
+            <div class="row d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">
+                <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 pl-3 border bg-white d-flex">
+                    <div class="flex-grow-1 flex-schrink-1 d-flex align-items-center title mr-2">
+                        <div class="d-flex flex-column">
+                            <span>{{pricewatch.name}}</span>
+                            <a class="url" href="" target="_blank">{{pricewatch.url}}</a>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 flex-schrink-0 text-right">
+                      <span class="price text-primary">
+                          <!--<sup class="text-danger">+12.12</sup>-->
+                          <!--{{pricewatch.values}}-->Test
+                      </span>
+                    </div>
+                    <div class="pl-3">
+                        <i class="fa fa-cog"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" class="btn btn-light">Add watch</button>
+            </div>
+        </div>
+
+
         <button @click="testLambda()">Test lamda</button>
         <div class="d-flex">
             <span class="wrap">ID</span>
