@@ -8,6 +8,7 @@ Amplify Params - DO NOT EDIT */
 const HTMLParser  = require('node-html-parser');
 const request = require('request');
 const xpathTools = require('./xpath');
+const og = require('./og');
 const responseTools = require('./response');
 const AWS = require('aws-sdk');
 AWS.config.region = process.env.REGION;
@@ -42,21 +43,23 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
         }
         const cleanedValue = xpathTools.getValue(firstTextNode);
 
-        // TODO do something with the value
-        console.log(cleanedValue);
-        console.log(process.env.FUNCTION_PRICEUPDATE_NAME)
 
         const payload = {
             value: cleanedValue,
+            img: og.getOpenGraphData(body).image,
             pricewatchId: event.pricewatchId
         };
 
+        console.log(payload)
+
         const params = {
             FunctionName: process.env.FUNCTION_PRICEUPDATE_NAME,
-            InvocationType: 'Event', // Event
+            InvocationType: 'Event',
             LogType: 'None',
             Payload: JSON.stringify(payload)
         };
+
+        console.log(lambda)
 
         lambda.invoke(params, function(err, data) {
             if (err) {
@@ -65,10 +68,8 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
             } else {
                 console.log(process.env.FUNCTION_PRICEUPDATE_NAME + ' said '+ data.Payload);
             }
-        }).then(() => {
             callback(null, responseTools.voidSuccessResponse());
         });
-
 
     });
 
