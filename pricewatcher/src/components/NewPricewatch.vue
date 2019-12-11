@@ -1,10 +1,19 @@
 <template>
     <div>
-        Name: <input v-model="name">
-        Url: <input v-model="url">
-        Xpath: <input v-model="xpath">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="heading m-0 mt-2 mb-2">Details</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            Name: <input v-model="name">
+            Url: <input v-model="url">
+            Xpath: <input v-model="xpath">
 
-        <button @click="createNewPriceWatch">Add</button>
+            <button @click="createNewPriceWatch">Add</button>
+        </div>
     </div>
 </template>
 

@@ -39,6 +39,24 @@
             }
         }
     },
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-pricewatcher-dev-184131-authRole",
+            "UnauthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-dev-184131-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-dev-184131-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-pricewatcher-dev-184131-deployment",
+            "UnauthRoleName": "amplify-pricewatcher-dev-184131-unauthRole",
+            "StackName": "amplify-pricewatcher-dev-184131",
+            "StackId": "arn:aws:cloudformation:eu-west-1:955631064926:stack/amplify-pricewatcher-dev-184131/ce7b0660-1918-11ea-8722-0aae1475e00a",
+            "AmplifyAppId": "dakrx6u4nrazx"
+        },
+        "categories": {
+            "function": {
+                "pricewatcher": {}
+            }
+        }
+    },
     "prod": {
         "awscloudformation": {
             "AuthRoleName": "amplify-pricewatcher-prod-195632-authRole",

@@ -2,16 +2,16 @@
 You can access the following resource attributes as environment variables from your Lambda function
 var environment = process.env.ENV
 var region = process.env.REGION
-var apiPricewatcherGraphQLAPIIdOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIIDOUTPUT
-var apiPricewatcherGraphQLAPIEndpointOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT
-var functionNightlyName = process.env.FUNCTION_NIGHTLY_NAME
+var functionPriceupdateName = process.env.FUNCTION_PRICEUPDATE_NAME
 
 Amplify Params - DO NOT EDIT */
-
 const HTMLParser  = require('node-html-parser');
 const request = require('request');
 const xpathTools = require('./xpath');
 const responseTools = require('./response');
+const AWS = require('aws-sdk');
+AWS.config.region = process.env.REGION;
+const lambda = new AWS.Lambda();
 
 exports.handler = function (event, context, callback) { //eslint-disable-line
   // context.done(null, 'Hello World'); // SUCCESS with message
@@ -44,9 +44,35 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
 
         // TODO do something with the value
         console.log(cleanedValue);
+        console.log(process.env.FUNCTION_PRICEUPDATE_NAME)
+
+        const payload = {
+            value: cleanedValue,
+            pricewatchId: event.pricewatchId
+        };
+
+        const params = {
+            FunctionName: process.env.FUNCTION_PRICEUPDATE_NAME,
+            InvocationType: 'Event', // Event
+            LogType: 'None',
+            Payload: JSON.stringify(payload)
+        };
+
+        lambda.invoke(params, function(err, data) {
+            if (err) {
+                console.log(err)
+                // context.fail(err);
+            } else {
+                console.log(process.env.FUNCTION_PRICEUPDATE_NAME + ' said '+ data.Payload);
+            }
+        }).then(() => {
+            callback(null, responseTools.voidSuccessResponse());
+        });
+
+
     });
 
 
-    callback(null, responseTools.voidSuccessResponse());
 
 };
+//
