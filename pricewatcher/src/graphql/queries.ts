@@ -34,11 +34,6 @@ export const listPricewatchs = `query ListPricewatchs(
       url
       xpath
       values {
-          items {
-            id
-            date
-            value
-          }
         nextToken
       }
     }
