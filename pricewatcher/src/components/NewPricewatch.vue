@@ -12,7 +12,7 @@
             Url: <input v-model="url">
             Xpath: <input v-model="xpath">
 
-            <button @click="createNewPriceWatch">Add</button>
+            <button @click="createNewPriceWatch" :disabled="isSaving" >Add</button>
         </div>
     </div>
 </template>
@@ -33,10 +33,21 @@ export default class NewPricewatch extends Vue {
     name = '';
     xpath = '';
     url = '';
+    isSaving = false;
 
     async createNewPriceWatch() {
+        this.isSaving = true;
         const todo: Pricewatch = { name: this.name, url: this.url, xpath: this.xpath };
-        await API.graphql(graphqlOperation(createPricewatch, { input: todo }))
+
+        await API.graphql(graphqlOperation(createPricewatch, { input: todo }));
+        this.emptyForm();
+        this.isSaving = false;
+    }
+
+    emptyForm() {
+        this.name = '';
+        this.xpath = '';
+        this.url = '';
     }
 
 }
