@@ -58,17 +58,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Inject } from 'vue-property-decorator';
 import API, {  graphqlOperation } from '@aws-amplify/api';
 
 import { listPricewatchs } from '@/graphql/queries';
 import {createPricewatch} from "../graphql/mutations";
 import {Pricewatch} from "../models/models";
+import {BvToast} from "bootstrap-vue";
 
 @Component({
 
 })
 export default class NewPricewatch extends Vue {
+
+    @Inject() public readonly $bvToast!: BvToast;
+
 
     pricewatch: Pricewatch = {
         name: '',
@@ -76,13 +80,11 @@ export default class NewPricewatch extends Vue {
         url: ''
     };
 
-
     isSaving = false;
 
     async createNewPriceWatch(evt) {
         evt.preventDefault()
         this.isSaving = true;
-        // const pricewatch: Pricewatch = { name: this.name, url: this.url, xpath: this.xpath };
 
         await API.graphql(graphqlOperation(createPricewatch, { input: this.pricewatch }));
         this.$bvToast.toast('New entry saved', {
@@ -95,9 +97,7 @@ export default class NewPricewatch extends Vue {
     }
 
     emptyForm() {
-        this.name = '';
-        this.xpath = '';
-        this.url = '';
+        this.pricewatch = {};
     }
 
 }
