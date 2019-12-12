@@ -6,6 +6,7 @@ import PubSub from '@aws-amplify/pubsub';
 import awsconfig from '../aws-exports';
 
 
+
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 

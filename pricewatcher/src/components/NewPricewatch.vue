@@ -8,11 +8,51 @@
             </div>
         </div>
         <div class="container">
-            Name: <input v-model="name">
-            Url: <input v-model="url">
-            Xpath: <input v-model="xpath">
+            <b-form @submit="createNewPriceWatch" >
+                <b-form-group
+                        id="name"
+                        label="Name:"
+                        label-for="nameInput"
+                >
+                    <b-form-input
+                            id="nameInput"
+                            v-model="pricewatch.name"
+                            type="text"
+                            required
+                            placeholder="Name"
+                    ></b-form-input>
+                </b-form-group>
 
-            <button @click="createNewPriceWatch" :disabled="isSaving" >Add</button>
+                <b-form-group
+                        id="url"
+                        label="Url:"
+                        label-for="urlInput"
+                >
+                    <b-form-input
+                            id="urlInput"
+                            v-model="pricewatch.url"
+                            type="text"
+                            required
+                            placeholder="Url"
+                    ></b-form-input>
+                </b-form-group>
+
+                <b-form-group
+                        id="xpath"
+                        label="Xpath:"
+                        label-for="xpathInput"
+                >
+                    <b-form-input
+                            id="xpathInput"
+                            v-model="pricewatch.xpath"
+                            type="text"
+                            required
+                            placeholder="Xpath"
+                    ></b-form-input>
+                </b-form-group>
+
+                <b-button type="submit" variant="success" :disabled="isSaving">Save</b-button>
+            </b-form>
         </div>
     </div>
 </template>
@@ -30,16 +70,26 @@ import {Pricewatch} from "../models/models";
 })
 export default class NewPricewatch extends Vue {
 
-    name = '';
-    xpath = '';
-    url = '';
+    pricewatch: Pricewatch = {
+        name: '',
+        xpath: '',
+        url: ''
+    };
+
+
     isSaving = false;
 
-    async createNewPriceWatch() {
+    async createNewPriceWatch(evt) {
+        evt.preventDefault()
         this.isSaving = true;
-        const todo: Pricewatch = { name: this.name, url: this.url, xpath: this.xpath };
+        // const pricewatch: Pricewatch = { name: this.name, url: this.url, xpath: this.xpath };
 
-        await API.graphql(graphqlOperation(createPricewatch, { input: todo }));
+        await API.graphql(graphqlOperation(createPricewatch, { input: this.pricewatch }));
+        this.$bvToast.toast('New entry saved', {
+            title: 'Save successful',
+            autoHideDelay: 2000,
+            toaster: 'b-toaster-top-center'
+        });
         this.emptyForm();
         this.isSaving = false;
     }
