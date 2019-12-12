@@ -9,7 +9,11 @@
         </div>
 
         <div class="container" v-if="pricewatch !== undefined">
+
             <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 pl-3 border bg-white d-flex flex-column">
+                <div class="pl-3">
+                    <i class="fa fa-cog"></i>
+                </div>
                 <div class="title">
                     {{pricewatch.name}}
                 </div>
@@ -70,5 +74,8 @@ export default class PricewatchList extends Vue {
 </script>
 
 <style scoped>
-
+    .fa-cog {
+        position: absolute;
+        right: 0.3em;
+    }
 </style>

@@ -8,14 +8,10 @@ module.exports = {
             name
             url
             xpath
-            values {
-              items {
-                id
-                date
-                value
-              }
-              nextToken
-            }
+            img
+            currentValue
+            lowestValue
+            highestValue
           }
         }
         `,

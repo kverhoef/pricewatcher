@@ -6,12 +6,20 @@ export type CreatePricewatchInput = {
   name: string,
   url: string,
   xpath: string,
+  img?: string | null,
+  currentValue?: string | null,
+  lowestValue?: string | null,
+  highestValue?: string | null,
 };
 
 export type ModelPricewatchConditionInput = {
   name?: ModelStringInput | null,
   url?: ModelStringInput | null,
   xpath?: ModelStringInput | null,
+  img?: ModelStringInput | null,
+  currentValue?: ModelStringInput | null,
+  lowestValue?: ModelStringInput | null,
+  highestValue?: ModelStringInput | null,
   and?: Array< ModelPricewatchConditionInput | null > | null,
   or?: Array< ModelPricewatchConditionInput | null > | null,
   not?: ModelPricewatchConditionInput | null,
@@ -62,6 +70,10 @@ export type UpdatePricewatchInput = {
   name?: string | null,
   url?: string | null,
   xpath?: string | null,
+  img?: string | null,
+  currentValue?: string | null,
+  lowestValue?: string | null,
+  highestValue?: string | null,
 };
 
 export type DeletePricewatchInput = {
@@ -99,6 +111,10 @@ export type ModelPricewatchFilterInput = {
   name?: ModelStringInput | null,
   url?: ModelStringInput | null,
   xpath?: ModelStringInput | null,
+  img?: ModelStringInput | null,
+  currentValue?: ModelStringInput | null,
+  lowestValue?: ModelStringInput | null,
+  highestValue?: ModelStringInput | null,
   and?: Array< ModelPricewatchFilterInput | null > | null,
   or?: Array< ModelPricewatchFilterInput | null > | null,
   not?: ModelPricewatchFilterInput | null,
@@ -141,6 +157,10 @@ export type CreatePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -166,6 +186,10 @@ export type UpdatePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -191,6 +215,10 @@ export type DeletePricewatchMutation = {
     name: string,
     url: string,
     xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -221,6 +249,10 @@ export type CreateWatchValueMutation = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
@@ -246,6 +278,10 @@ export type UpdateWatchValueMutation = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
@@ -271,6 +307,10 @@ export type DeleteWatchValueMutation = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
@@ -298,6 +338,10 @@ export type GetPricewatchQuery = {
     name: string,
     url: string,
     xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -326,6 +370,10 @@ export type ListPricewatchsQuery = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
@@ -351,6 +399,10 @@ export type GetWatchValueQuery = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
@@ -379,6 +431,10 @@ export type ListWatchValuesQuery = {
         name: string,
         url: string,
         xpath: string,
+        img: string | null,
+        currentValue: string | null,
+        lowestValue: string | null,
+        highestValue: string | null,
       } | null,
     } | null > | null,
     nextToken: string | null,
@@ -392,6 +448,10 @@ export type OnCreatePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -412,6 +472,10 @@ export type OnUpdatePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -432,6 +496,10 @@ export type OnDeletePricewatchSubscription = {
     name: string,
     url: string,
     xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -457,6 +525,10 @@ export type OnCreateWatchValueSubscription = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
@@ -477,6 +549,10 @@ export type OnUpdateWatchValueSubscription = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
@@ -497,6 +573,10 @@ export type OnDeleteWatchValueSubscription = {
       name: string,
       url: string,
       xpath: string,
+      img: string | null,
+      currentValue: string | null,
+      lowestValue: string | null,
+      highestValue: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,

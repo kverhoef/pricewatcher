@@ -7,6 +7,10 @@ export const onCreatePricewatch = `subscription OnCreatePricewatch {
     name
     url
     xpath
+    img
+    currentValue
+    lowestValue
+    highestValue
     values {
       items {
         id
@@ -24,6 +28,10 @@ export const onUpdatePricewatch = `subscription OnUpdatePricewatch {
     name
     url
     xpath
+    img
+    currentValue
+    lowestValue
+    highestValue
     values {
       items {
         id
@@ -41,6 +49,10 @@ export const onDeletePricewatch = `subscription OnDeletePricewatch {
     name
     url
     xpath
+    img
+    currentValue
+    lowestValue
+    highestValue
     values {
       items {
         id
@@ -62,6 +74,10 @@ export const onCreateWatchValue = `subscription OnCreateWatchValue {
       name
       url
       xpath
+      img
+      currentValue
+      lowestValue
+      highestValue
       values {
         nextToken
       }
@@ -79,6 +95,10 @@ export const onUpdateWatchValue = `subscription OnUpdateWatchValue {
       name
       url
       xpath
+      img
+      currentValue
+      lowestValue
+      highestValue
       values {
         nextToken
       }
@@ -96,6 +116,10 @@ export const onDeleteWatchValue = `subscription OnDeleteWatchValue {
       name
       url
       xpath
+      img
+      currentValue
+      lowestValue
+      highestValue
       values {
         nextToken
       }

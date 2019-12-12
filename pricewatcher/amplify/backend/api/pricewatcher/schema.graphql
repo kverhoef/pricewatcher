@@ -3,6 +3,10 @@ type Pricewatch @model {
     name: String!
     url: String!
     xpath: String!
+    img: String
+    currentValue: String
+    lowestValue: String
+    highestValue: String
     values: [WatchValue] @connection(name: "WatchValue")
 }
 

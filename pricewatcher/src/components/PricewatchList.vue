@@ -11,23 +11,23 @@
         <div class="container">
 
             <div class="row d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">
-                <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 pl-3 border bg-white d-flex">
+                <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 border bg-white d-flex">
+                    <div class="pl-0 pr-2 d-flex justify-content-center align-items-center">
+                        <img style="width: 4.4em; height:4.4em;" :src="pricewatch.img"></div>
                     <div class="flex-grow-1 flex-schrink-1 d-flex align-items-center title mr-2">
                         <div class="d-flex flex-column">
-                            <span><router-link :to="{ path: '/detail/' + pricewatch.id, params: {id: pricewatch.id } }" class="nav-link">{{pricewatch.name}}</router-link></span>
+                            <span><router-link :to="{ path: '/detail/' + pricewatch.id, params: {id: pricewatch.id } }" class="nav-link pl-0">{{pricewatch.name}}</router-link></span>
                             <a class="url" :href="pricewatch.url" target="_blank">{{pricewatch.url}}</a>
                         </div>
                     </div>
-                    <div class="flex-grow-1 flex-schrink-0 text-right">
-                      <span class="price text-primary" v-if="pricewatch.values !== undefined && pricewatch.values.items.length">
+                    <div class="flex-grow-1 flex-schrink-0 text-right pr-3">
+                      <span class="price text-primary">
                           <!--<sup class="text-danger">+12.12</sup>-->
                           <!--{{pricewatch.values}}-->
-                          {{pricewatch.values.items[pricewatch.values.items.length-1].value}}
+                          {{pricewatch.currentValue}}
                       </span>
                     </div>
-                    <div class="pl-3">
-                        <i class="fa fa-cog"></i>
-                    </div>
+
                 </div>
 
             </div>
