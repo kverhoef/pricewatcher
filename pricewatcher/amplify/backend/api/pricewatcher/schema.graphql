@@ -1,4 +1,11 @@
-type Pricewatch @model {
+
+type Pricewatch
+    @model
+    @auth(
+        rules: [
+            {allow: owner, ownerField: "owner", operations: [create, update, delete, read]},
+        ])
+{
     id: ID!
     name: String!
     url: String!
@@ -8,13 +15,21 @@ type Pricewatch @model {
     lowestValue: String
     highestValue: String
     values: [WatchValue] @connection(name: "WatchValue")
+    owner: String
 }
 
-type WatchValue @model {
+type WatchValue
+    @model
+    @auth(
+        rules: [
+            {allow: owner, ownerField: "owner", operations: [create, update, delete, read]},
+        ])
+{
     id: ID!
     date: String!
     value: String!
     pricewatch: Pricewatch @connection(name: "WatchValue")
+    owner: String
 }
 
 type Query {

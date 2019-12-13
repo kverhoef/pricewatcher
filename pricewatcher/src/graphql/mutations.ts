@@ -19,9 +19,11 @@ export const createPricewatch = `mutation CreatePricewatch(
         id
         date
         value
+        owner
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -43,9 +45,11 @@ export const updatePricewatch = `mutation UpdatePricewatch(
         id
         date
         value
+        owner
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -67,9 +71,11 @@ export const deletePricewatch = `mutation DeletePricewatch(
         id
         date
         value
+        owner
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -93,7 +99,9 @@ export const createWatchValue = `mutation CreateWatchValue(
       values {
         nextToken
       }
+      owner
     }
+    owner
   }
 }
 `;
@@ -117,7 +125,9 @@ export const updateWatchValue = `mutation UpdateWatchValue(
       values {
         nextToken
       }
+      owner
     }
+    owner
   }
 }
 `;
@@ -141,7 +151,9 @@ export const deleteWatchValue = `mutation DeleteWatchValue(
       values {
         nextToken
       }
+      owner
     }
+    owner
   }
 }
 `;

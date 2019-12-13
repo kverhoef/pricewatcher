@@ -5,12 +5,22 @@
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
-					"additionalAuthenticationProviders": [],
+					"additionalAuthenticationProviders": [
+						{
+							"authenticationType": "API_KEY",
+							"apiKeyConfig": {
+								"description": "",
+								"apiKeyExpirationDays": 7
+							}
+						},
+						{
+							"authenticationType": "AWS_IAM"
+						}
+					],
 					"defaultAuthentication": {
-						"authenticationType": "API_KEY",
-						"apiKeyConfig": {
-							"description": "",
-							"apiKeyExpirationDays": "100"
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authpricewatcher5e51b1ce"
 						}
 					}
 				}
@@ -74,6 +84,13 @@
 		"S3AndCloudFront": {
 			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation"
+		}
+	},
+	"auth": {
+		"pricewatcher5e51b1ce": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
 		}
 	}
 }

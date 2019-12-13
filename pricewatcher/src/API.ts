@@ -10,6 +10,7 @@ export type CreatePricewatchInput = {
   currentValue?: string | null,
   lowestValue?: string | null,
   highestValue?: string | null,
+  owner?: string | null,
 };
 
 export type ModelPricewatchConditionInput = {
@@ -74,6 +75,7 @@ export type UpdatePricewatchInput = {
   currentValue?: string | null,
   lowestValue?: string | null,
   highestValue?: string | null,
+  owner?: string | null,
 };
 
 export type DeletePricewatchInput = {
@@ -84,6 +86,7 @@ export type CreateWatchValueInput = {
   id?: string | null,
   date: string,
   value: string,
+  owner?: string | null,
   watchValuePricewatchId?: string | null,
 };
 
@@ -99,6 +102,7 @@ export type UpdateWatchValueInput = {
   id: string,
   date?: string | null,
   value?: string | null,
+  owner?: string | null,
   watchValuePricewatchId?: string | null,
 };
 
@@ -115,6 +119,7 @@ export type ModelPricewatchFilterInput = {
   currentValue?: ModelStringInput | null,
   lowestValue?: ModelStringInput | null,
   highestValue?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelPricewatchFilterInput | null > | null,
   or?: Array< ModelPricewatchFilterInput | null > | null,
   not?: ModelPricewatchFilterInput | null,
@@ -140,6 +145,7 @@ export type ModelWatchValueFilterInput = {
   id?: ModelIDInput | null,
   date?: ModelStringInput | null,
   value?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelWatchValueFilterInput | null > | null,
   or?: Array< ModelWatchValueFilterInput | null > | null,
   not?: ModelWatchValueFilterInput | null,
@@ -168,9 +174,11 @@ export type CreatePricewatchMutation = {
         id: string,
         date: string,
         value: string,
+        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -197,9 +205,11 @@ export type UpdatePricewatchMutation = {
         id: string,
         date: string,
         value: string,
+        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -226,9 +236,11 @@ export type DeletePricewatchMutation = {
         id: string,
         date: string,
         value: string,
+        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -257,7 +269,9 @@ export type CreateWatchValueMutation = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -286,7 +300,9 @@ export type UpdateWatchValueMutation = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -315,7 +331,9 @@ export type DeleteWatchValueMutation = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -349,9 +367,11 @@ export type GetPricewatchQuery = {
         id: string,
         date: string,
         value: string,
+        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -378,6 +398,7 @@ export type ListPricewatchsQuery = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -407,7 +428,9 @@ export type GetWatchValueQuery = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };
 
@@ -435,10 +458,16 @@ export type ListWatchValuesQuery = {
         currentValue: string | null,
         lowestValue: string | null,
         highestValue: string | null,
+        owner: string | null,
       } | null,
+      owner: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
+};
+
+export type OnCreatePricewatchSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnCreatePricewatchSubscription = {
@@ -459,10 +488,16 @@ export type OnCreatePricewatchSubscription = {
         id: string,
         date: string,
         value: string,
+        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
+    owner: string | null,
   } | null,
+};
+
+export type OnUpdatePricewatchSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnUpdatePricewatchSubscription = {
@@ -483,10 +518,16 @@ export type OnUpdatePricewatchSubscription = {
         id: string,
         date: string,
         value: string,
+        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
+    owner: string | null,
   } | null,
+};
+
+export type OnDeletePricewatchSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnDeletePricewatchSubscription = {
@@ -507,10 +548,16 @@ export type OnDeletePricewatchSubscription = {
         id: string,
         date: string,
         value: string,
+        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
+    owner: string | null,
   } | null,
+};
+
+export type OnCreateWatchValueSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnCreateWatchValueSubscription = {
@@ -533,8 +580,14 @@ export type OnCreateWatchValueSubscription = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null,
+    owner: string | null,
   } | null,
+};
+
+export type OnUpdateWatchValueSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnUpdateWatchValueSubscription = {
@@ -557,8 +610,14 @@ export type OnUpdateWatchValueSubscription = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null,
+    owner: string | null,
   } | null,
+};
+
+export type OnDeleteWatchValueSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnDeleteWatchValueSubscription = {
@@ -581,6 +640,8 @@ export type OnDeleteWatchValueSubscription = {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
+      owner: string | null,
     } | null,
+    owner: string | null,
   } | null,
 };

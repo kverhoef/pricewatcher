@@ -36,6 +36,9 @@
                 "nightly": {},
                 "crawler": {},
                 "priceupdate": {}
+            },
+            "auth": {
+                "pricewatcher5e51b1ce": {}
             }
         }
     },

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-
+<!--    <amplify-sign-in v-bind:signInConfig="signInConfig"></amplify-sign-in>-->
+    <amplify-authenticator></amplify-authenticator>
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
         <router-link to="/" class="navbar-brand">Pricewatcher</router-link>
@@ -38,11 +39,17 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
 import path from 'path';
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue'
+import { AmplifyPlugin } from 'aws-amplify-vue'
+import Amplify, * as AmplifyModules from 'aws-amplify'
+import awsconfig from '../aws-exports';
 
 const __dirname = path.resolve();
 
+Amplify.configure(awsconfig);
+
 Vue.use(VueRouter);
 Vue.use(BootstrapVue)
+Vue.use(AmplifyPlugin, AmplifyModules)
 
 const router = new VueRouter({
     mode: 'history',

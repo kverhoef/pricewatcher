@@ -20,9 +20,11 @@ export const getPricewatch = `query GetPricewatch($id: ID!) {
         id
         date
         value
+        owner
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -44,6 +46,7 @@ export const listPricewatchs = `query ListPricewatchs(
       values {
         nextToken
       }
+      owner
     }
     nextToken
   }
@@ -66,7 +69,9 @@ export const getWatchValue = `query GetWatchValue($id: ID!) {
       values {
         nextToken
       }
+      owner
     }
+    owner
   }
 }
 `;
@@ -89,7 +94,9 @@ export const listWatchValues = `query ListWatchValues(
         currentValue
         lowestValue
         highestValue
+        owner
       }
+      owner
     }
     nextToken
   }

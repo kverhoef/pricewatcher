@@ -1,8 +1,8 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const onCreatePricewatch = `subscription OnCreatePricewatch {
-  onCreatePricewatch {
+export const onCreatePricewatch = `subscription OnCreatePricewatch($owner: String!) {
+  onCreatePricewatch(owner: $owner) {
     id
     name
     url
@@ -16,14 +16,16 @@ export const onCreatePricewatch = `subscription OnCreatePricewatch {
         id
         date
         value
+        owner
       }
       nextToken
     }
+    owner
   }
 }
 `;
-export const onUpdatePricewatch = `subscription OnUpdatePricewatch {
-  onUpdatePricewatch {
+export const onUpdatePricewatch = `subscription OnUpdatePricewatch($owner: String!) {
+  onUpdatePricewatch(owner: $owner) {
     id
     name
     url
@@ -37,14 +39,16 @@ export const onUpdatePricewatch = `subscription OnUpdatePricewatch {
         id
         date
         value
+        owner
       }
       nextToken
     }
+    owner
   }
 }
 `;
-export const onDeletePricewatch = `subscription OnDeletePricewatch {
-  onDeletePricewatch {
+export const onDeletePricewatch = `subscription OnDeletePricewatch($owner: String!) {
+  onDeletePricewatch(owner: $owner) {
     id
     name
     url
@@ -58,14 +62,16 @@ export const onDeletePricewatch = `subscription OnDeletePricewatch {
         id
         date
         value
+        owner
       }
       nextToken
     }
+    owner
   }
 }
 `;
-export const onCreateWatchValue = `subscription OnCreateWatchValue {
-  onCreateWatchValue {
+export const onCreateWatchValue = `subscription OnCreateWatchValue($owner: String!) {
+  onCreateWatchValue(owner: $owner) {
     id
     date
     value
@@ -81,12 +87,14 @@ export const onCreateWatchValue = `subscription OnCreateWatchValue {
       values {
         nextToken
       }
+      owner
     }
+    owner
   }
 }
 `;
-export const onUpdateWatchValue = `subscription OnUpdateWatchValue {
-  onUpdateWatchValue {
+export const onUpdateWatchValue = `subscription OnUpdateWatchValue($owner: String!) {
+  onUpdateWatchValue(owner: $owner) {
     id
     date
     value
@@ -102,12 +110,14 @@ export const onUpdateWatchValue = `subscription OnUpdateWatchValue {
       values {
         nextToken
       }
+      owner
     }
+    owner
   }
 }
 `;
-export const onDeleteWatchValue = `subscription OnDeleteWatchValue {
-  onDeleteWatchValue {
+export const onDeleteWatchValue = `subscription OnDeleteWatchValue($owner: String!) {
+  onDeleteWatchValue(owner: $owner) {
     id
     date
     value
@@ -123,7 +133,9 @@ export const onDeleteWatchValue = `subscription OnDeleteWatchValue {
       values {
         nextToken
       }
+      owner
     }
+    owner
   }
 }
 `;
