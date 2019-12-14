@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <amplify-authenticator v-bind:authConfig="authConfig"></amplify-authenticator>
-    Welcome {{userInfo.username}}<amplify-sign-out></amplify-sign-out>
+    <span v-if="userInfo"> Welcome {{userInfo.username}}</span><amplify-sign-out></amplify-sign-out>
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
         <router-link to="/" class="navbar-brand">Pricewatcher</router-link>
@@ -24,11 +24,10 @@
     <router-view class="view"></router-view>
 
   </div>
-
 </template>
 
 <script lang="ts">
-  import {Component, Inject} from 'vue-property-decorator';
+import {Component, Inject} from 'vue-property-decorator';
 import PricewatchList from './components/PricewatchList.vue';
 import NewPricewatch from './components/NewPricewatch.vue';
 import PricewatchDetails from './components/PricewatchDetails.vue';
@@ -39,8 +38,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
 import path from 'path';
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue'
-
-import Amplify from 'aws-amplify';
 
 const __dirname = path.resolve();
 
@@ -97,22 +94,25 @@ export default class App extends Vue {
     }
   }
 
-  userInfo: any;
+  userInfo = {};
 
   created() {
     this.getUsername();
   }
 
   async getUsername() {
-    this.userInfo = await this.$Amplify.Auth.currentUserInfo();
+    try {
+      this.userInfo = await this.$Amplify.Auth.currentUserInfo();  
+    } catch (e) {
+      console.log(e);
+    }
+    
   }
 
 }
 </script>
 
 <style>
-
-
   body {
     background-color: #f2f4f9;
     color: #444;

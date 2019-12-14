@@ -72,23 +72,25 @@ import {GraphQLResult} from "@aws-amplify/api/lib/types";
 
 })
 export default class PricewatchList extends Vue {
-  pricewatchList: Pricewatch[] = [];
+    pricewatchList: Pricewatch[] = [];
 
-  created() {
-    this.getData();
-  }
+    created() {
+        this.getData();
+    }
 
     async testLambda() {
         const model: EchoQueryVariables = {msg: 'testmessage'};
         await API.graphql(graphqlOperation(echo, model ))
     }
 
-  getData(){
-    (API.graphql(graphqlOperation(listPricewatchs)) as Promise<GraphQLResult>).then((result: any) => {
-        this.pricewatchList = result.data.listPricewatchs.items;
-    });
-
-  }
+    async getData(){
+        try {
+            const result = await API.graphql(graphqlOperation(listPricewatchs));
+            this.pricewatchList = result.data.listPricewatchs.items;
+        } catch (e) {
+            console.log(e);
+        }
+     }
 }
 </script>
 
