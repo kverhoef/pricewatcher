@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="probootstrap-navbar">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
+              <router-link to="/pricewatchList" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/new" class="nav-link">New</router-link>
@@ -88,7 +88,7 @@ export default class App extends Vue {
     try {
       this.userInfo = await this.$Amplify.Auth.currentUserInfo();
       if(!this.userInfo) {
-        this.$router.push({path: '/'})
+        await this.$router.push({path: '/'})
       }
     } catch (e) {
       console.log(e);
