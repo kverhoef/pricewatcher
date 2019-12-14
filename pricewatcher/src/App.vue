@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <amplify-authenticator v-bind:authConfig="authConfig"></amplify-authenticator>
-    <amplify-sign-out></amplify-sign-out>
+    Welcome {{userInfo.username}}<amplify-sign-out></amplify-sign-out>
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
         <router-link to="/" class="navbar-brand">Pricewatcher</router-link>
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { Component } from 'vue-property-decorator';
+  import {Component, Inject} from 'vue-property-decorator';
 import PricewatchList from './components/PricewatchList.vue';
 import NewPricewatch from './components/NewPricewatch.vue';
 import PricewatchDetails from './components/PricewatchDetails.vue';
@@ -39,17 +39,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
 import path from 'path';
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue'
-import { AmplifyPlugin } from 'aws-amplify-vue'
-import Amplify, * as AmplifyModules from 'aws-amplify'
-import awsconfig from '../aws-exports';
+
+import Amplify from 'aws-amplify';
 
 const __dirname = path.resolve();
 
-Amplify.configure(awsconfig);
-
 Vue.use(VueRouter);
 Vue.use(BootstrapVue)
-Vue.use(AmplifyPlugin, AmplifyModules)
 
 const router = new VueRouter({
     mode: 'history',
@@ -99,6 +95,16 @@ export default class App extends Vue {
         }
       ]
     }
+  }
+
+  userInfo: any;
+
+  created() {
+    this.getUsername();
+  }
+
+  async getUsername() {
+    this.userInfo = await this.$Amplify.Auth.currentUserInfo();
   }
 
 }
