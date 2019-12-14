@@ -65,6 +65,41 @@ const router = new VueRouter({
   router
 })
 export default class App extends Vue {
+  authConfig = {
+    signUpConfig: {
+      signUpFields: [
+        {
+          label: 'Username',
+          key: 'username',
+          required: true,
+          displayOrder: 1,
+          type: 'string',
+        },
+        {
+          label: 'Email',
+          key: 'email',
+          required: true,
+          displayOrder: 2,
+          type: 'string',
+          signUpWith: true
+        },
+        {
+          label: 'Password',
+          key: 'password',
+          required: true,
+          displayOrder: 3,
+          type: 'password'
+        },
+        {
+          label: 'PhoneNumber',
+          key: 'phone_number',
+          required: true,
+          displayOrder: 4,
+          type: 'string'
+        }
+      ]
+    }
+  }
 
 }
 </script>
@@ -78,8 +113,6 @@ export default class App extends Vue {
     background: linear-gradient(45deg,#665fee 0%,#27c2de 100%);
     min-height: 100vh;
   }
-
-
 
   .title {
     font-weight: bold;
