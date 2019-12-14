@@ -3,8 +3,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { AmplifyEventBus } from 'aws-amplify-vue';
+import {Component, Inject, Vue} from 'vue-property-decorator';
 
 @Component({
 })
@@ -44,14 +43,6 @@ export default class Login extends Vue {
             ]
         }
     }
-
-    created() {
-        AmplifyEventBus.$on('authState', info => {
-            this.$router.push({path: 'pricewatchList'});
-            console.log(`Here is the auth event that was just emitted by an Amplify component: `, info)
-        });
-    }
-
 }
 </script>
 

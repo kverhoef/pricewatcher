@@ -38,7 +38,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
 import path from 'path';
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue'
-import Amplify from 'aws-amplify-vue'
+import {Amplify, AmplifyEventBus} from 'aws-amplify-vue'
 
 const __dirname = path.resolve();
 
@@ -46,15 +46,17 @@ Vue.use(VueRouter);
 Vue.use(BootstrapVue)
 
 const router = new VueRouter({
-    mode: 'history',
-    base: __dirname,
-    routes: [
-      { path: '/', component: Login},
-      { path: '/pricewatchList', component: PricewatchList },
-      { path: '/new', component: NewPricewatch },
-      { path: '/detail/:id', component: PricewatchDetails }
-    ]
+  mode: 'history',
+  base: __dirname,
+  routes: [
+    { path: '/', component: Login},
+    { path: '/pricewatchList', component: PricewatchList },
+    { path: '/new', component: NewPricewatch },
+    { path: '/detail/:id', component: PricewatchDetails }
+  ]
 });
+
+
 
 @Component({
   router
@@ -65,12 +67,26 @@ export default class App extends Vue {
   userInfo = {};
 
   created() {
-    this.getUsername();
+    this.userInfo = this.getUserInfo();
+    this.registerAuthWatches();
   }
 
-  async getUsername() {
+  registerAuthWatches() {
+    AmplifyEventBus.$on('authState', info => {
+      if(info === 'signedIn') {
+        this.$router.push({path: 'pricewatchList'});
+      } else if(info === 'signedOut') {
+        this.$router.push({path: '/'});
+      }
+    });
+  }
+
+  async getUserInfo() {
     try {
-      this.userInfo = await this.$Amplify.Auth.currentUserInfo();  
+      this.userInfo = await this.$Amplify.Auth.currentUserInfo();
+      if(!this.userInfo) {
+        this.$router.push({path: '/'})
+      }
     } catch (e) {
       console.log(e);
     }
