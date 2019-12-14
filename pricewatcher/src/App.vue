@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-<!--    <amplify-sign-in v-bind:signInConfig="signInConfig"></amplify-sign-in>-->
-    <amplify-authenticator></amplify-authenticator>
+    <amplify-authenticator v-bind:authConfig="authConfig"></amplify-authenticator>
+    <amplify-sign-out></amplify-sign-out>
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
         <router-link to="/" class="navbar-brand">Pricewatcher</router-link>
