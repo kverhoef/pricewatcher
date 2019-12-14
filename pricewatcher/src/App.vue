@@ -38,6 +38,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
 import path from 'path';
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue'
+import Amplify from 'aws-amplify-vue'
 
 const __dirname = path.resolve();
 
@@ -59,6 +60,8 @@ const router = new VueRouter({
   router
 })
 export default class App extends Vue {
+  @Inject() public readonly $Amplify!: Amplify;
+
   userInfo = {};
 
   created() {

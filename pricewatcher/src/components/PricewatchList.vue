@@ -85,7 +85,7 @@ export default class PricewatchList extends Vue {
 
     async getData(){
         try {
-            const result = await API.graphql(graphqlOperation(listPricewatchs));
+            const result: any = await API.graphql(graphqlOperation(listPricewatchs));
             this.pricewatchList = result.data.listPricewatchs.items;
         } catch (e) {
             console.log(e);
