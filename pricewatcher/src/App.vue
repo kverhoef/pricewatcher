@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <span v-if="userInfo"> Welcome {{userInfo.username}}</span><amplify-sign-out></amplify-sign-out>
+    <div v-if="userInfo">
+      <span > Welcome {{userInfo.username}}</span><amplify-sign-out></amplify-sign-out>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
         <router-link to="/" class="navbar-brand">Pricewatcher</router-link>
@@ -73,6 +75,7 @@ export default class App extends Vue {
 
   registerAuthWatches() {
     AmplifyEventBus.$on('authState', info => {
+      this.userInfo = this.getUserInfo();
       if(info === 'signedIn') {
         this.$router.push({path: 'pricewatchList'});
       } else if(info === 'signedOut') {
