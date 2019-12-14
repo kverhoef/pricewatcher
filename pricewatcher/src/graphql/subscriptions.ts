@@ -11,6 +11,7 @@ export const onCreatePricewatch = `subscription OnCreatePricewatch($owner: Strin
     currentValue
     lowestValue
     highestValue
+    owner
     values {
       items {
         id
@@ -20,7 +21,6 @@ export const onCreatePricewatch = `subscription OnCreatePricewatch($owner: Strin
       }
       nextToken
     }
-    owner
   }
 }
 `;
@@ -34,6 +34,7 @@ export const onUpdatePricewatch = `subscription OnUpdatePricewatch($owner: Strin
     currentValue
     lowestValue
     highestValue
+    owner
     values {
       items {
         id
@@ -43,7 +44,6 @@ export const onUpdatePricewatch = `subscription OnUpdatePricewatch($owner: Strin
       }
       nextToken
     }
-    owner
   }
 }
 `;
@@ -57,6 +57,7 @@ export const onDeletePricewatch = `subscription OnDeletePricewatch($owner: Strin
     currentValue
     lowestValue
     highestValue
+    owner
     values {
       items {
         id
@@ -66,7 +67,6 @@ export const onDeletePricewatch = `subscription OnDeletePricewatch($owner: Strin
       }
       nextToken
     }
-    owner
   }
 }
 `;
@@ -75,6 +75,7 @@ export const onCreateWatchValue = `subscription OnCreateWatchValue($owner: Strin
     id
     date
     value
+    owner
     pricewatch {
       id
       name
@@ -84,12 +85,11 @@ export const onCreateWatchValue = `subscription OnCreateWatchValue($owner: Strin
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
-    owner
   }
 }
 `;
@@ -98,6 +98,7 @@ export const onUpdateWatchValue = `subscription OnUpdateWatchValue($owner: Strin
     id
     date
     value
+    owner
     pricewatch {
       id
       name
@@ -107,12 +108,11 @@ export const onUpdateWatchValue = `subscription OnUpdateWatchValue($owner: Strin
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
-    owner
   }
 }
 `;
@@ -121,6 +121,7 @@ export const onDeleteWatchValue = `subscription OnDeleteWatchValue($owner: Strin
     id
     date
     value
+    owner
     pricewatch {
       id
       name
@@ -130,12 +131,11 @@ export const onDeleteWatchValue = `subscription OnDeleteWatchValue($owner: Strin
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
-    owner
   }
 }
 `;

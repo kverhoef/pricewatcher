@@ -5,29 +5,6 @@ export const echo = `query Echo($msg: String) {
   echo(msg: $msg)
 }
 `;
-export const getPricewatch = `query GetPricewatch($id: ID!) {
-  getPricewatch(id: $id) {
-    id
-    name
-    url
-    xpath
-    img
-    currentValue
-    lowestValue
-    highestValue
-    values {
-      items {
-        id
-        date
-        value
-        owner
-      }
-      nextToken
-    }
-    owner
-  }
-}
-`;
 export const listPricewatchs = `query ListPricewatchs(
   $filter: ModelPricewatchFilterInput
   $limit: Int
@@ -43,12 +20,35 @@ export const listPricewatchs = `query ListPricewatchs(
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
     nextToken
+  }
+}
+`;
+export const getPricewatch = `query GetPricewatch($id: ID!) {
+  getPricewatch(id: $id) {
+    id
+    name
+    url
+    xpath
+    img
+    currentValue
+    lowestValue
+    highestValue
+    owner
+    values {
+      items {
+        id
+        date
+        value
+        owner
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -57,6 +57,7 @@ export const getWatchValue = `query GetWatchValue($id: ID!) {
     id
     date
     value
+    owner
     pricewatch {
       id
       name
@@ -66,12 +67,11 @@ export const getWatchValue = `query GetWatchValue($id: ID!) {
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
-    owner
   }
 }
 `;
@@ -85,6 +85,7 @@ export const listWatchValues = `query ListWatchValues(
       id
       date
       value
+      owner
       pricewatch {
         id
         name
@@ -96,7 +97,6 @@ export const listWatchValues = `query ListWatchValues(
         highestValue
         owner
       }
-      owner
     }
     nextToken
   }

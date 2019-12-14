@@ -3,7 +3,8 @@ type Pricewatch
     @model
     @auth(
         rules: [
-            {allow: owner, ownerField: "owner", operations: [create, update, delete, read]},
+            {allow: owner, ownerField: "owner", operations: [read, create, update, delete]},
+            {allow: private, provider: iam, operations: [read, create, update, delete] }
         ])
 {
     id: ID!
@@ -23,6 +24,7 @@ type WatchValue
     @auth(
         rules: [
             {allow: owner, ownerField: "owner", operations: [create, update, delete, read]},
+            {allow: private, provider: iam, operations: [read, create, update, delete] }
         ])
 {
     id: ID!

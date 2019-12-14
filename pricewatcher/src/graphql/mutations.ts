@@ -14,6 +14,7 @@ export const createPricewatch = `mutation CreatePricewatch(
     currentValue
     lowestValue
     highestValue
+    owner
     values {
       items {
         id
@@ -23,7 +24,6 @@ export const createPricewatch = `mutation CreatePricewatch(
       }
       nextToken
     }
-    owner
   }
 }
 `;
@@ -40,6 +40,7 @@ export const updatePricewatch = `mutation UpdatePricewatch(
     currentValue
     lowestValue
     highestValue
+    owner
     values {
       items {
         id
@@ -49,7 +50,6 @@ export const updatePricewatch = `mutation UpdatePricewatch(
       }
       nextToken
     }
-    owner
   }
 }
 `;
@@ -66,6 +66,7 @@ export const deletePricewatch = `mutation DeletePricewatch(
     currentValue
     lowestValue
     highestValue
+    owner
     values {
       items {
         id
@@ -75,7 +76,6 @@ export const deletePricewatch = `mutation DeletePricewatch(
       }
       nextToken
     }
-    owner
   }
 }
 `;
@@ -87,6 +87,7 @@ export const createWatchValue = `mutation CreateWatchValue(
     id
     date
     value
+    owner
     pricewatch {
       id
       name
@@ -96,12 +97,11 @@ export const createWatchValue = `mutation CreateWatchValue(
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
-    owner
   }
 }
 `;
@@ -113,6 +113,7 @@ export const updateWatchValue = `mutation UpdateWatchValue(
     id
     date
     value
+    owner
     pricewatch {
       id
       name
@@ -122,12 +123,11 @@ export const updateWatchValue = `mutation UpdateWatchValue(
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
-    owner
   }
 }
 `;
@@ -139,6 +139,7 @@ export const deleteWatchValue = `mutation DeleteWatchValue(
     id
     date
     value
+    owner
     pricewatch {
       id
       name
@@ -148,12 +149,11 @@ export const deleteWatchValue = `mutation DeleteWatchValue(
       currentValue
       lowestValue
       highestValue
+      owner
       values {
         nextToken
       }
-      owner
     }
-    owner
   }
 }
 `;

@@ -167,6 +167,7 @@ export type CreatePricewatchMutation = {
     currentValue: string | null,
     lowestValue: string | null,
     highestValue: string | null,
+    owner: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -178,7 +179,6 @@ export type CreatePricewatchMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -198,6 +198,7 @@ export type UpdatePricewatchMutation = {
     currentValue: string | null,
     lowestValue: string | null,
     highestValue: string | null,
+    owner: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -209,7 +210,6 @@ export type UpdatePricewatchMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -229,6 +229,7 @@ export type DeletePricewatchMutation = {
     currentValue: string | null,
     lowestValue: string | null,
     highestValue: string | null,
+    owner: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -240,7 +241,6 @@ export type DeletePricewatchMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -255,6 +255,7 @@ export type CreateWatchValueMutation = {
     id: string,
     date: string,
     value: string,
+    owner: string | null,
     pricewatch:  {
       __typename: "Pricewatch",
       id: string,
@@ -265,13 +266,12 @@ export type CreateWatchValueMutation = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -286,6 +286,7 @@ export type UpdateWatchValueMutation = {
     id: string,
     date: string,
     value: string,
+    owner: string | null,
     pricewatch:  {
       __typename: "Pricewatch",
       id: string,
@@ -296,13 +297,12 @@ export type UpdateWatchValueMutation = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -317,6 +317,7 @@ export type DeleteWatchValueMutation = {
     id: string,
     date: string,
     value: string,
+    owner: string | null,
     pricewatch:  {
       __typename: "Pricewatch",
       id: string,
@@ -327,13 +328,12 @@ export type DeleteWatchValueMutation = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -343,36 +343,6 @@ export type EchoQueryVariables = {
 
 export type EchoQuery = {
   echo: string | null,
-};
-
-export type GetPricewatchQueryVariables = {
-  id: string,
-};
-
-export type GetPricewatchQuery = {
-  getPricewatch:  {
-    __typename: "Pricewatch",
-    id: string,
-    name: string,
-    url: string,
-    xpath: string,
-    img: string | null,
-    currentValue: string | null,
-    lowestValue: string | null,
-    highestValue: string | null,
-    values:  {
-      __typename: "ModelWatchValueConnection",
-      items:  Array< {
-        __typename: "WatchValue",
-        id: string,
-        date: string,
-        value: string,
-        owner: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    owner: string | null,
-  } | null,
 };
 
 export type ListPricewatchsQueryVariables = {
@@ -394,13 +364,43 @@ export type ListPricewatchsQuery = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null > | null,
     nextToken: string | null,
+  } | null,
+};
+
+export type GetPricewatchQueryVariables = {
+  id: string,
+};
+
+export type GetPricewatchQuery = {
+  getPricewatch:  {
+    __typename: "Pricewatch",
+    id: string,
+    name: string,
+    url: string,
+    xpath: string,
+    img: string | null,
+    currentValue: string | null,
+    lowestValue: string | null,
+    highestValue: string | null,
+    owner: string | null,
+    values:  {
+      __typename: "ModelWatchValueConnection",
+      items:  Array< {
+        __typename: "WatchValue",
+        id: string,
+        date: string,
+        value: string,
+        owner: string | null,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
   } | null,
 };
 
@@ -414,6 +414,7 @@ export type GetWatchValueQuery = {
     id: string,
     date: string,
     value: string,
+    owner: string | null,
     pricewatch:  {
       __typename: "Pricewatch",
       id: string,
@@ -424,13 +425,12 @@ export type GetWatchValueQuery = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -448,6 +448,7 @@ export type ListWatchValuesQuery = {
       id: string,
       date: string,
       value: string,
+      owner: string | null,
       pricewatch:  {
         __typename: "Pricewatch",
         id: string,
@@ -460,7 +461,6 @@ export type ListWatchValuesQuery = {
         highestValue: string | null,
         owner: string | null,
       } | null,
-      owner: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -481,6 +481,7 @@ export type OnCreatePricewatchSubscription = {
     currentValue: string | null,
     lowestValue: string | null,
     highestValue: string | null,
+    owner: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -492,7 +493,6 @@ export type OnCreatePricewatchSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -511,6 +511,7 @@ export type OnUpdatePricewatchSubscription = {
     currentValue: string | null,
     lowestValue: string | null,
     highestValue: string | null,
+    owner: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -522,7 +523,6 @@ export type OnUpdatePricewatchSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -541,6 +541,7 @@ export type OnDeletePricewatchSubscription = {
     currentValue: string | null,
     lowestValue: string | null,
     highestValue: string | null,
+    owner: string | null,
     values:  {
       __typename: "ModelWatchValueConnection",
       items:  Array< {
@@ -552,7 +553,6 @@ export type OnDeletePricewatchSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -566,6 +566,7 @@ export type OnCreateWatchValueSubscription = {
     id: string,
     date: string,
     value: string,
+    owner: string | null,
     pricewatch:  {
       __typename: "Pricewatch",
       id: string,
@@ -576,13 +577,12 @@ export type OnCreateWatchValueSubscription = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -596,6 +596,7 @@ export type OnUpdateWatchValueSubscription = {
     id: string,
     date: string,
     value: string,
+    owner: string | null,
     pricewatch:  {
       __typename: "Pricewatch",
       id: string,
@@ -606,13 +607,12 @@ export type OnUpdateWatchValueSubscription = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
 
@@ -626,6 +626,7 @@ export type OnDeleteWatchValueSubscription = {
     id: string,
     date: string,
     value: string,
+    owner: string | null,
     pricewatch:  {
       __typename: "Pricewatch",
       id: string,
@@ -636,12 +637,11 @@ export type OnDeleteWatchValueSubscription = {
       currentValue: string | null,
       lowestValue: string | null,
       highestValue: string | null,
+      owner: string | null,
       values:  {
         __typename: "ModelWatchValueConnection",
         nextToken: string | null,
       } | null,
-      owner: string | null,
     } | null,
-    owner: string | null,
   } | null,
 };
