@@ -7,6 +7,14 @@
                 "update",
                 "delete"
             ]
+        },
+        "function": {
+            "crawler": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
         }
     }
 }
