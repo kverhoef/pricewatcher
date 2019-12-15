@@ -2,7 +2,10 @@
     "permissions": {
         "api": {
             "pricewatcher": [
-                "read"
+                "create",
+                "read",
+                "update",
+                "delete"
             ]
         }
     }

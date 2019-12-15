@@ -4,7 +4,6 @@ var environment = process.env.ENV
 var region = process.env.REGION
 var apiPricewatcherGraphQLAPIIdOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIIDOUTPUT
 var apiPricewatcherGraphQLAPIEndpointOutput = process.env.API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT
-var functionCrawlerName = process.env.FUNCTION_CRAWLER_NAME
 
 Amplify Params - DO NOT EDIT */
 
@@ -30,12 +29,12 @@ exports.handler = function (event, context, callback) {
         operationName: "ListPricewatchs",
     });
 
-    if (apiKey) {
-        req.headers["x-api-key"] = apiKey;
-    } else {
+    // if (apiKey) {
+    //     req.headers["x-api-key"] = apiKey;
+    // } else {
         const signer = new AWS.Signers.V4(req, "appsync", true);
         signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
-    }
+    // }
 
     const data = new Promise((resolve, reject) => {
         const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
