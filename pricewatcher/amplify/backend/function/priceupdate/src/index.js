@@ -30,12 +30,12 @@ const createApiRequest = (query, operationName, variables) => {
         variables: variables
     });
 
-    if (apiKey) {
-        req.headers["x-api-key"] = apiKey;
-    } else {
+    // if (apiKey) {
+    //     req.headers["x-api-key"] = apiKey;
+    // } else {
         const signer = new AWS.Signers.V4(req, "appsync", true);
         signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
-    }
+    // }
 
     return new Promise((resolve, reject) => {
         const httpRequest = https.request({ ...req, host: endpoint }, (result) => {

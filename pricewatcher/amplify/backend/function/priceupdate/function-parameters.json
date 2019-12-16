@@ -4,7 +4,8 @@
             "pricewatcher": [
                 "create",
                 "read",
-                "update"
+                "update",
+                "delete"
             ]
         }
     }

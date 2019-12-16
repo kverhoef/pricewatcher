@@ -186,7 +186,8 @@
 								"appsync:GraphQL",
 								"appsync:Get*",
 								"appsync:List*",
-								"appsync:Update*"
+								"appsync:Update*",
+								"appsync:Delete*"
 							],
 							"Resource": [
 								{
