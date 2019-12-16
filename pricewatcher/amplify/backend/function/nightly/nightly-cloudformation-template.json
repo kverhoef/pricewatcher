@@ -5,6 +5,10 @@
 		"env": {
 			"Type": "String"
 		},
+		"functioncrawlerName": {
+			"Type": "String",
+			"Default": "functioncrawlerName"
+		},
 		"apipricewatcherGraphQLAPIIdOutput": {
 			"Type": "String",
 			"Default": "apipricewatcherGraphQLAPIIdOutput"
@@ -12,10 +16,6 @@
 		"apipricewatcherGraphQLAPIEndpointOutput": {
 			"Type": "String",
 			"Default": "apipricewatcherGraphQLAPIEndpointOutput"
-		},
-		"functioncrawlerName": {
-			"Type": "String",
-			"Default": "functioncrawlerName"
 		}
 	},
 	"Conditions": {
@@ -63,14 +63,14 @@
 						"REGION": {
 							"Ref": "AWS::Region"
 						},
+						"FUNCTION_CRAWLER_NAME": {
+							"Ref": "functioncrawlerName"
+						},
 						"API_PRICEWATCHER_GRAPHQLAPIIDOUTPUT": {
 							"Ref": "apipricewatcherGraphQLAPIIdOutput"
 						},
 						"API_PRICEWATCHER_GRAPHQLAPIENDPOINTOUTPUT": {
 							"Ref": "apipricewatcherGraphQLAPIEndpointOutput"
-						},
-						"FUNCTION_CRAWLER_NAME": {
-							"Ref": "functioncrawlerName"
 						}
 					}
 				},
@@ -188,8 +188,13 @@
 						{
 							"Effect": "Allow",
 							"Action": [
+								"appsync:Create*",
+								"appsync:StartSchemaCreation",
+								"appsync:GraphQL",
 								"appsync:Get*",
-								"appsync:List*"
+								"appsync:List*",
+								"appsync:Update*",
+								"appsync:Delete*"
 							],
 							"Resource": [
 								{
@@ -217,9 +222,15 @@
 						{
 							"Effect": "Allow",
 							"Action": [
+								"lambda:Create*",
+								"lambda:Put*",
+								"lambda:Add*",
 								"lambda:Get*",
 								"lambda:List*",
-								"lambda:Invoke*"
+								"lambda:Invoke*",
+								"lambda:Update*",
+								"lambda:Delete*",
+								"lambda:Remove*"
 							],
 							"Resource": [
 								{
