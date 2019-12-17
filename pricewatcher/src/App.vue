@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="userInfo">
-      <span > Welcome {{userInfo.username}}</span><amplify-sign-out></amplify-sign-out>
-    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container">
         <router-link to="/" class="navbar-brand">Pricewatcher</router-link>
@@ -17,6 +15,13 @@
             <li class="nav-item">
               <router-link to="/new" class="nav-link">New</router-link>
             </li>
+
+            <li class="nav-item" v-if="userInfo">
+              <span class="nav-link"><i class="fa fa-user"></i> {{userInfo.username}}</span>
+            </li>
+            <li class="nav-item" v-if="userInfo">
+              <a class="nav-link" href="#" v-on:click="signOut">(Sign Out)</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -28,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject} from 'vue-property-decorator';
+import {Component} from 'vue-property-decorator';
 import PricewatchList from './components/PricewatchList.vue';
 import NewPricewatch from './components/NewPricewatch.vue';
 import PricewatchDetails from './components/PricewatchDetails.vue';
@@ -69,16 +74,22 @@ export default class App extends Vue {
     super();
   }
 
-  userInfo = {};
+  userInfo;
+
+  data() {
+    return {
+      userInfo: undefined
+    }
+  }
 
   created() {
-    this.userInfo = this.getUserInfo();
+    this.getUserInfo();
     this.registerAuthWatches();
   }
 
   registerAuthWatches() {
     AmplifyEventBus.$on('authState', info => {
-      this.userInfo = this.getUserInfo();
+      this.getUserInfo();
       if(info === 'signedIn') {
         this.$router.push({path: 'pricewatchList'});
       } else if(info === 'signedOut') {
@@ -87,15 +98,18 @@ export default class App extends Vue {
     });
   }
 
+  signOut() {
+    this.$Amplify.Auth.signOut().then(() => {
+      this.userInfo = undefined;
+      this.$router.push({path: '/'});
+    });
+  }
+
   async getUserInfo() {
-    try {
-      this.userInfo = await this.$Amplify.Auth.currentUserInfo();
-      if(!this.userInfo) {
-        await this.$router.push({path: '/'})
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    this.$Amplify.Auth.currentUserInfo().then(userInfo => {
+        this.userInfo = userInfo;
+    });
+
   }
 }
 </script>
