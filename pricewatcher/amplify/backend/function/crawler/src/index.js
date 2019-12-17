@@ -37,20 +37,13 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
         if (!fullXpath) {
             callback(null, responseTools.errorResponse("Xpath niet gevonden: " + xpath));
         }
-        const firstTextNode = xpathTools.findFirstTextNode(fullXpath);
-        if (!firstTextNode) {
-            callback(null, responseTools.errorResponse("Geen text node gevonden"));
-        }
-        const cleanedValue = xpathTools.getValue(firstTextNode);
-
+        const cleanedValue = xpathTools.findText(fullXpath);
 
         const payload = {
             value: cleanedValue,
             img: og.getOpenGraphData(body).image,
             pricewatchId: event.pricewatchId
         };
-
-        console.log(payload)
 
         const params = {
             FunctionName: process.env.FUNCTION_PRICEUPDATE_NAME,
@@ -59,7 +52,6 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
             Payload: JSON.stringify(payload)
         };
 
-        console.log(lambda)
 
         lambda.invoke(params, function(err, data) {
             if (err) {

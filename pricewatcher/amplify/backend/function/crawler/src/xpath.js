@@ -41,6 +41,22 @@ module.exports = {
         return found;
     },
 
+    findText: (node) => {
+        let foundStr = "";
+        const f = (searchNode) => {
+            if (searchNode.nodeType === 3) {
+                if (searchNode.rawText) {
+                    const stipedValue = module.exports.getValue(searchNode.rawText) || '';
+                    foundStr += stipedValue ? stipedValue + '.' : '';
+                }
+            } else {
+                searchNode.childNodes.forEach((c) => f(c))
+            }
+        };
+        f(node);
+        return module.exports.getValue(foundStr);
+    },
+
     findNodeDeep: (node, tagName) => {
         let found;
         const f = (searchNode) => {
@@ -58,10 +74,10 @@ module.exports = {
         return found;
     },
 
-    getValue: (node) => {
-        const matched = node.rawText.match('[+-]?([0-9]*[.])?[0-9]+');
-        if (matched.length) {
-            const matchedNumber = node.rawText.match('[+-]?([0-9]*[.])?[0-9]+')[0];
+    getValue: (text) => {
+        const matched = text ? text.match('[+-]?([0-9]*[.|,])?[0-9]+', 'g' ) : '';
+        if (matched && matched.length) {
+            const matchedNumber = matched[0].replace(',', '.');
             return Number.parseFloat(matchedNumber);
         }
     }
