@@ -11,12 +11,12 @@
         <div class="container" v-if="pricewatch !== undefined">
 
             <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 pl-3 border bg-white d-flex flex-column">
+                <pricewatch-header :pricewatch="pricewatch"></pricewatch-header>
+
                 <div class="pl-3">
                     <i class="fa fa-cog"></i>
                 </div>
-                <div class="title">
-                    {{pricewatch.name}}
-                </div>
+
                 <div >
                     <!--{{$route.params}}-->
 
@@ -39,10 +39,12 @@ import { deletePricewatch } from '@/graphql/mutations';
 import {DeletePricewatchInput} from "../API";
 import {GraphQLResult} from "@aws-amplify/api/lib/types";
 import Chart  from './Chart.vue';
+import PricewatchHeader from "@/components/PricewatchHeader.vue";
 
 @Component({
     components: {
-        Chart
+        Chart,
+        PricewatchHeader
     }
 })
 export default class PricewatchList extends Vue {
@@ -77,5 +79,6 @@ export default class PricewatchList extends Vue {
     .fa-cog {
         position: absolute;
         right: 0.3em;
+        top: 0.3em;
     }
 </style>

@@ -11,50 +11,12 @@
         <div class="container">
 
             <div class="row d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">
-                <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 border bg-white d-flex">
-                    <div class="pl-0 pr-2 d-flex justify-content-center align-items-center">
-                        <img style="width: 4.4em; height:4.4em;" :src="pricewatch.img"></div>
-                    <div class="flex-grow-1 flex-schrink-1 d-flex align-items-center title mr-2">
-                        <div class="d-flex flex-column">
-                            <span><router-link :to="{ path: '/detail/' + pricewatch.id, params: {id: pricewatch.id } }" class="nav-link pl-0">{{pricewatch.name}}</router-link></span>
-                            <a class="url" :href="pricewatch.url" target="_blank">{{pricewatch.url}}</a>
-                        </div>
-                    </div>
-                    <div class="flex-grow-1 flex-schrink-0 text-right pr-3">
-                      <span class="price text-primary">
-                          <!--<sup class="text-danger">+12.12</sup>-->
-                          <!--{{pricewatch.values}}-->
-                          {{pricewatch.currentValue}}
-                      </span>
-                    </div>
-
+                <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 border bg-white">
+                    <pricewatch-header :pricewatch="pricewatch"></pricewatch-header>
                 </div>
-
             </div>
-            <!--<div>-->
-                <!--<button type="button" class="btn btn-light">Add watch</button>-->
-            <!--</div>-->
         </div>
 
-        <!--<button @click="testLambda()">Test lamda</button>-->
-        <!--<div class="d-flex">-->
-            <!--<span class="wrap">ID</span>-->
-            <!--<span class="wrap">name</span>-->
-            <!--<span class="wrap">url</span>-->
-            <!--<span class="wrap">xpath</span>-->
-        <!--</div>-->
-      <!--<div class="d-flex" v-for="pricewatch in pricewatchList" :key="pricewatch.id">-->
-          <!--<span class="wrap">{{pricewatch.id}}</span>-->
-          <!--<span class="wrap">{{pricewatch.name}}</span>-->
-          <!--<span class="wrap">{{pricewatch.url}}</span>-->
-          <!--<span class="wrap">{{pricewatch.xpath}}</span>-->
-          <!--<span class="wrap">-->
-            <!--<div class="d-flex" v-for="value in pricewatch.values.items" :key="value.id">-->
-                <!--{{value.value}}-->
-            <!--</div>-->
-          <!--</span>-->
-          <!--<button @click="removePricewatch(pricewatch.id)">Remove</button>-->
-      <!--</div>-->
     </div>
 </template>
 
@@ -67,20 +29,19 @@ import { deletePricewatch } from '@/graphql/mutations';
 import {Pricewatch} from "../models/models";
 import {DeletePricewatchInput, EchoQueryVariables} from "../API";
 import {GraphQLResult} from "@aws-amplify/api/lib/types";
+import Chart from "@/components/Chart.vue";
+import PricewatchHeader from "@/components/PricewatchHeader.vue";
 
 @Component({
-
+    components: {
+        PricewatchHeader
+    }
 })
 export default class PricewatchList extends Vue {
     pricewatchList: Pricewatch[] = [];
 
     created() {
         this.getData();
-    }
-
-    async testLambda() {
-        const model: EchoQueryVariables = {msg: 'testmessage'};
-        await API.graphql(graphqlOperation(echo, model ))
     }
 
     async getData(){
