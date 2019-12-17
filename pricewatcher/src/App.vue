@@ -64,7 +64,10 @@ const router = new VueRouter({
   router
 })
 export default class App extends Vue {
-  @Inject() public readonly $Amplify!: Amplify;
+
+  constructor(private $Amplify: Amplify) {
+    super();
+  }
 
   userInfo = {};
 
