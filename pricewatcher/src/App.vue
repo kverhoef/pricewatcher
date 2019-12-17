@@ -107,7 +107,11 @@ export default class App extends Vue {
 
   async getUserInfo() {
     this.$Amplify.Auth.currentUserInfo().then(userInfo => {
+      if (userInfo) {
         this.userInfo = userInfo;
+      } else {
+        this.$router.push({path: '/'});
+      }
     });
 
   }
