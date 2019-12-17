@@ -12,6 +12,7 @@ module.exports = {
             currentValue
             lowestValue
             highestValue
+            initialValue
           }
         }
         `,
@@ -40,6 +41,7 @@ module.exports = {
         id
         date
         value
+        owner
         pricewatch {
           id
           name
