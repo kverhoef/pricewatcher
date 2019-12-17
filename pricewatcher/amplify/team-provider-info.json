@@ -1,24 +1,4 @@
 {
-    "devkevin": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-pricewatcher-devkevin-204627-authRole",
-            "UnauthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-devkevin-204627-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-devkevin-204627-authRole",
-            "Region": "eu-west-1",
-            "DeploymentBucketName": "amplify-pricewatcher-devkevin-204627-deployment",
-            "UnauthRoleName": "amplify-pricewatcher-devkevin-204627-unauthRole",
-            "StackName": "amplify-pricewatcher-devkevin-204627",
-            "StackId": "arn:aws:cloudformation:eu-west-1:955631064926:stack/amplify-pricewatcher-devkevin-204627/98ee19d0-1605-11ea-ad20-02d3b89dc706",
-            "AmplifyAppId": "dakrx6u4nrazx"
-        },
-        "categories": {
-            "function": {
-                "pricewatcher": {},
-                "nightly": {},
-                "crawler": {}
-            }
-        }
-    },
     "devfab": {
         "awscloudformation": {
             "AuthRoleName": "amplify-pricewatcher-devfab-182203-authRole",
@@ -42,24 +22,6 @@
             }
         }
     },
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-pricewatcher-dev-184131-authRole",
-            "UnauthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-dev-184131-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-dev-184131-authRole",
-            "Region": "eu-west-1",
-            "DeploymentBucketName": "amplify-pricewatcher-dev-184131-deployment",
-            "UnauthRoleName": "amplify-pricewatcher-dev-184131-unauthRole",
-            "StackName": "amplify-pricewatcher-dev-184131",
-            "StackId": "arn:aws:cloudformation:eu-west-1:955631064926:stack/amplify-pricewatcher-dev-184131/ce7b0660-1918-11ea-8722-0aae1475e00a",
-            "AmplifyAppId": "dakrx6u4nrazx"
-        },
-        "categories": {
-            "function": {
-                "pricewatcher": {}
-            }
-        }
-    },
     "prod": {
         "awscloudformation": {
             "AuthRoleName": "amplify-pricewatcher-prod-195632-authRole",
@@ -77,6 +39,30 @@
                 "pricewatcher": {},
                 "nightly": {},
                 "crawler": {}
+            }
+        }
+    },
+    "kevin": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-pricewatcher-kevin-112832-authRole",
+            "UnauthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-kevin-112832-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::955631064926:role/amplify-pricewatcher-kevin-112832-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-pricewatcher-kevin-112832-deployment",
+            "UnauthRoleName": "amplify-pricewatcher-kevin-112832-unauthRole",
+            "StackName": "amplify-pricewatcher-kevin-112832",
+            "StackId": "arn:aws:cloudformation:eu-west-1:955631064926:stack/amplify-pricewatcher-kevin-112832/f9e74a10-20b7-11ea-8cec-06310ddbba8e",
+            "AmplifyAppId": "dakrx6u4nrazx"
+        },
+        "categories": {
+            "auth": {
+                "pricewatcher5e51b1ce": {}
+            },
+            "function": {
+                "crawler": {},
+                "nightly": {},
+                "priceupdate": {},
+                "pricewatcher": {}
             }
         }
     }
