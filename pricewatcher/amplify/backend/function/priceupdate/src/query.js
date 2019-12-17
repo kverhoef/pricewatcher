@@ -22,6 +22,7 @@ module.exports = {
         name
         url
         xpath
+        owner
         values {
           items {
             id
