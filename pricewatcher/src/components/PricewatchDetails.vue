@@ -23,7 +23,6 @@
                     <chart v-if="pricewatch.values !== undefined && pricewatch.values.items.length" :chart-data="pricewatch.values.items"></chart>
                 </div>
 
-                <button @click="deletePricewatch()" class="btn btn-danger">Remove</button>
             </div>
 
         </div>
@@ -31,17 +30,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import API, {  graphqlOperation } from '@aws-amplify/api';
+    import {Component, Vue} from 'vue-property-decorator';
+    import API, {graphqlOperation} from '@aws-amplify/api';
 
-import { getPricewatch } from '@/graphql/queries';
-import { deletePricewatch } from '@/graphql/mutations';
-import {DeletePricewatchInput} from "../API";
-import {GraphQLResult} from "@aws-amplify/api/lib/types";
-import Chart  from './Chart.vue';
-import PricewatchHeader from "@/components/PricewatchHeader.vue";
+    import {getPricewatch} from '@/graphql/queries';
+    import {GraphQLResult} from "@aws-amplify/api/lib/types";
+    import Chart from './Chart.vue';
+    import PricewatchHeader from "@/components/PricewatchHeader.vue";
 
-@Component({
+    @Component({
     components: {
         Chart,
         PricewatchHeader
@@ -58,12 +55,6 @@ export default class PricewatchList extends Vue {
         return {
             pricewatch: 'Pricewatch'
         }
-    }
-
-    async deletePricewatch() {
-      const model: DeletePricewatchInput = {id: this.$route.params.id};
-      await API.graphql(graphqlOperation(deletePricewatch, { input: model } ))
-        this.getData();
     }
 
   getData(){

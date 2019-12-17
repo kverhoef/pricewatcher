@@ -41,10 +41,6 @@ import PricewatchHeader from "@/components/PricewatchHeader.vue";
 export default class PricewatchList extends Vue {
     pricewatch;
 
-    created() {
-        this.getData();
-    }
-
     data() {
         return {
             pricewatch: 'Pricewatch'
@@ -52,16 +48,10 @@ export default class PricewatchList extends Vue {
     }
 
     async deletePricewatch() {
-      const model: DeletePricewatchInput = {id: this.$route.params.id};
-      await API.graphql(graphqlOperation(deletePricewatch, { input: model } ))
-        this.getData();
+        const model: DeletePricewatchInput = {id: this.$route.params.id};
+        await API.graphql(graphqlOperation(deletePricewatch, { input: model } ))
+        this.$router.push({path: '/'});
     }
-
-  getData(){
-    (API.graphql(graphqlOperation(getPricewatch, { id: this.$route.params.id })) as Promise<GraphQLResult>).then((result: any) => {
-        this.pricewatch = result.data.getPricewatch;
-    });
-  }
 
 }
 </script>

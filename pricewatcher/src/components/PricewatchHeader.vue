@@ -10,8 +10,9 @@
         </div>
         <div class="flex-grow-1 flex-schrink-0 text-right pr-3">
           <span class="price text-primary">
-              <!--<sup class="text-danger">+12.12</sup>-->
-              <!--{{pricewatch.values}}-->
+              <sup v-if="percentage > 0" class="text-danger">+{{percentage}}%</sup>
+              <sup v-if="percentage < 0" class="text-success">{{percentage}}%</sup>
+
               {{pricewatch.currentValue}}
           </span>
         </div>
@@ -29,6 +30,16 @@
 export default class PricewatchHeader extends Vue {
     @Prop()
     pricewatch!: Pricewatch;
+
+    percentage: Number = 0;
+
+    created() {
+        if (this.pricewatch.initialValue && this.pricewatch.currentValue) {
+            const initialValue = Number.parseFloat(this.pricewatch.initialValue)
+            const currentValue = Number.parseFloat(this.pricewatch.currentValue)
+            this.percentage = Math.round(1000 / initialValue * (initialValue - currentValue) * -1) / 10;
+        }
+    }
 
 }
 </script>
