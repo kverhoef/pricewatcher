@@ -21,18 +21,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import API, {  graphqlOperation } from '@aws-amplify/api';
+    import {Component, Vue} from 'vue-property-decorator';
+    import API, {graphqlOperation} from '@aws-amplify/api';
+    import {listPricewatchs} from '@/graphql/queries';
+    import {Pricewatch} from "../models/models";
+    import PricewatchHeader from "@/components/PricewatchHeader.vue";
 
-import { listPricewatchs, echo } from '@/graphql/queries';
-import { deletePricewatch } from '@/graphql/mutations';
-import {Pricewatch} from "../models/models";
-import {DeletePricewatchInput, EchoQueryVariables} from "../API";
-import {GraphQLResult} from "@aws-amplify/api/lib/types";
-import Chart from "@/components/Chart.vue";
-import PricewatchHeader from "@/components/PricewatchHeader.vue";
-
-@Component({
+    @Component({
     components: {
         PricewatchHeader
     }

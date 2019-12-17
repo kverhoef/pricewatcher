@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-12">
-                    <h1 class="heading m-0 mt-2 mb-2">Details</h1>
+                    <h1 class="heading m-0 mt-2 mb-2">Settings</h1>
                 </div>
             </div>
         </div>
@@ -13,17 +13,9 @@
             <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 pl-3 border bg-white d-flex flex-column">
                 <pricewatch-header :pricewatch="pricewatch"></pricewatch-header>
 
-                <router-link :to="{ path: '/detail/' + pricewatch.id + '/edit', params: {id: pricewatch.id } }">
-                    <i class="fa fa-cog"></i>
-                </router-link>
-
                 <div>
-                    <!--{{$route.params}}-->
-
-                    <chart v-if="pricewatch.values !== undefined && pricewatch.values.items.length" :chart-data="pricewatch.values.items"></chart>
+                    <button @click="deletePricewatch()" class="btn btn-danger">Remove</button>
                 </div>
-
-                <button @click="deletePricewatch()" class="btn btn-danger">Remove</button>
             </div>
 
         </div>
@@ -43,7 +35,6 @@ import PricewatchHeader from "@/components/PricewatchHeader.vue";
 
 @Component({
     components: {
-        Chart,
         PricewatchHeader
     }
 })

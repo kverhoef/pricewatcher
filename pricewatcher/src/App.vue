@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="probootstrap-navbar">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link to="/pricewatchList" class="nav-link">Home</router-link>
+              <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item" v-if="userInfo">
               <router-link to="/new" class="nav-link">New</router-link>
@@ -33,42 +33,25 @@
 </template>
 
 <script lang="ts">
-import {Component} from 'vue-property-decorator';
-import PricewatchList from './components/PricewatchList.vue';
-import NewPricewatch from './components/NewPricewatch.vue';
-import PricewatchDetails from './components/PricewatchDetails.vue';
-import Login from './components/Login.vue';
-import Vue from 'vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'font-awesome/css/font-awesome.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueRouter from 'vue-router'
-import path from 'path';
-import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue'
-import {Amplify, AmplifyEventBus} from 'aws-amplify-vue'
+  import {Component, Watch} from 'vue-property-decorator';
+  import Vue from 'vue'
+  import 'bootstrap/dist/css/bootstrap.css'
+  import 'font-awesome/css/font-awesome.css'
+  import 'bootstrap-vue/dist/bootstrap-vue.css'
+  import VueRouter from 'vue-router'
+  import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue'
+  import {Amplify, AmplifyEventBus} from 'aws-amplify-vue'
+  import router from './router'
 
-const __dirname = path.resolve();
-
-Vue.use(VueRouter);
-Vue.use(BootstrapVue)
-
-const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
-  routes: [
-    { path: '/', component: Login},
-    { path: '/pricewatchList', component: PricewatchList },
-    { path: '/new', component: NewPricewatch },
-    { path: '/detail/:id', component: PricewatchDetails }
-  ]
-});
-
-
+  Vue.use(VueRouter);
+  Vue.use(BootstrapVue)
 
 @Component({
   router
 })
 export default class App extends Vue {
+
+   public static LOGIN_URL = '/login';
 
   constructor(private $Amplify: Amplify) {
     super();
@@ -87,13 +70,20 @@ export default class App extends Vue {
     this.registerAuthWatches();
   }
 
+  @Watch('$route', { immediate: true, deep: true })
+  onUrlChange(route: any) {
+    if (route.path !== App.LOGIN_URL && !this.userInfo) {
+      this.$router.push({path: App.LOGIN_URL});
+    }
+  }
+
   registerAuthWatches() {
     AmplifyEventBus.$on('authState', info => {
       this.getUserInfo();
       if(info === 'signedIn') {
         this.$router.push({path: 'pricewatchList'});
       } else if(info === 'signedOut') {
-        this.$router.push({path: '/'});
+        this.$router.push({path: App.LOGIN_URL});
       }
     });
   }
@@ -101,7 +91,7 @@ export default class App extends Vue {
   signOut() {
     this.$Amplify.Auth.signOut().then(() => {
       this.userInfo = undefined;
-      this.$router.push({path: '/'});
+      this.$router.push({path: App.LOGIN_URL});
     });
   }
 
@@ -109,8 +99,9 @@ export default class App extends Vue {
     this.$Amplify.Auth.currentUserInfo().then(userInfo => {
       if (userInfo) {
         this.userInfo = userInfo;
-      } else {
         this.$router.push({path: '/'});
+      } else {
+        this.$router.push({path: App.LOGIN_URL});
       }
     });
 

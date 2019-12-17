@@ -30,7 +30,6 @@ export default class PricewatchHeader extends Vue {
     @Prop()
     pricewatch!: Pricewatch;
 
-
 }
 </script>
 
