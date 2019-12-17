@@ -1,12 +1,10 @@
 module.exports = {
     getOpenGraphData: (html) => {
         const matchOpenGraph = (html, property) => {
-            const tag = html.match(new RegExp('<meta.*property="' + property + '".*content="(.*)".*\/>', 'g'));
-            if (tag && tag.length) {
-                const match = tag[0].match(/content="(.*)"/);
-                if (match.length > 0){
-                    return match[1];
-                }
+            const split = html.split(new RegExp('property="' + property + '".*content="(.*)"', 'g'), 2);
+            if (split.length > 1) {
+                const a = split[1].split('"', 2);
+                return a[0];
             }
         };
         return {
