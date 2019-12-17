@@ -11,6 +11,7 @@ export const createPricewatch = `mutation CreatePricewatch(
     url
     xpath
     img
+    initialValue
     currentValue
     lowestValue
     highestValue
@@ -37,6 +38,7 @@ export const updatePricewatch = `mutation UpdatePricewatch(
     url
     xpath
     img
+    initialValue
     currentValue
     lowestValue
     highestValue
@@ -63,6 +65,7 @@ export const deletePricewatch = `mutation DeletePricewatch(
     url
     xpath
     img
+    initialValue
     currentValue
     lowestValue
     highestValue
@@ -94,6 +97,7 @@ export const createWatchValue = `mutation CreateWatchValue(
       url
       xpath
       img
+      initialValue
       currentValue
       lowestValue
       highestValue
@@ -120,6 +124,7 @@ export const updateWatchValue = `mutation UpdateWatchValue(
       url
       xpath
       img
+      initialValue
       currentValue
       lowestValue
       highestValue
@@ -146,6 +151,7 @@ export const deleteWatchValue = `mutation DeleteWatchValue(
       url
       xpath
       img
+      initialValue
       currentValue
       lowestValue
       highestValue

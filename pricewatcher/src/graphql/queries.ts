@@ -17,6 +17,7 @@ export const listPricewatchs = `query ListPricewatchs(
       url
       xpath
       img
+      initialValue
       currentValue
       lowestValue
       highestValue
@@ -36,6 +37,7 @@ export const getPricewatch = `query GetPricewatch($id: ID!) {
     url
     xpath
     img
+    initialValue
     currentValue
     lowestValue
     highestValue
@@ -64,6 +66,7 @@ export const getWatchValue = `query GetWatchValue($id: ID!) {
       url
       xpath
       img
+      initialValue
       currentValue
       lowestValue
       highestValue
@@ -92,6 +95,7 @@ export const listWatchValues = `query ListWatchValues(
         url
         xpath
         img
+        initialValue
         currentValue
         lowestValue
         highestValue

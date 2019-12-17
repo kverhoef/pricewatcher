@@ -12,6 +12,7 @@ type Pricewatch
     url: String!
     xpath: String!
     img: String
+    initialValue: String
     currentValue: String
     lowestValue: String
     highestValue: String

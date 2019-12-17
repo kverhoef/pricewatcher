@@ -75,6 +75,7 @@ exports.handler = async (event) => {
         currentValue: newValue,
         lowestValue: newValue < lowest ? newValue : lowest,
         highestValue: newValue > heighest ? newValue : heighest,
+        initialValue: priceWatch.initialValue || newValue
     };
 
     console.log(priceWatch)
