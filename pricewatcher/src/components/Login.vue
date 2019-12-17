@@ -1,5 +1,7 @@
 <template>
-    <amplify-authenticator v-bind:authConfig="authConfig"></amplify-authenticator>
+    <div class="container d-flex justify-content-center">
+        <amplify-authenticator v-bind:authConfig="authConfig"></amplify-authenticator>
+    </div>
 </template>
 
 <script lang="ts">

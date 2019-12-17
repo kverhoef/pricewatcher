@@ -12,7 +12,7 @@
             <li class="nav-item">
               <router-link to="/pricewatchList" class="nav-link">Home</router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="userInfo">
               <router-link to="/new" class="nav-link">New</router-link>
             </li>
 
