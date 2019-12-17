@@ -92,7 +92,8 @@ exports.handler = async (event) => {
         input: {
             date: new Date().getTime().toString(),
             watchValuePricewatchId: event.pricewatchId,
-            value: event.value
+            value: event.value,
+            owner: priceWatch.owner
         }
     });
 
