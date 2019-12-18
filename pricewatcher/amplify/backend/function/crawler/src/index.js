@@ -15,9 +15,8 @@ AWS.config.region = process.env.REGION;
 const lambda = new AWS.Lambda();
 
 exports.handler = function (event, context, callback) { //eslint-disable-line
-  // context.done(null, 'Hello World'); // SUCCESS with message
 
-    console.log(event.xpath, event.url);
+    console.info('Crawler event:', event);
 
     const httpOptions = {
         url: event.url,
@@ -39,33 +38,34 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
         }
         const cleanedValue = xpathTools.findText(fullXpath);
 
-        const payload = {
-            value: cleanedValue,
-            img: og.getOpenGraphData(body).image,
-            pricewatchId: event.pricewatchId
-        };
+        if (!event.pricewatchId) {
+            console.info('CleanedValue: ' + cleanedValue);
+            console.warn('No pricewatchId in event. Saving result skipped')
+        } else {
 
-        const params = {
-            FunctionName: process.env.FUNCTION_PRICEUPDATE_NAME,
-            InvocationType: 'Event',
-            LogType: 'None',
-            Payload: JSON.stringify(payload)
-        };
+            const payload = {
+                value: cleanedValue,
+                img: og.getOpenGraphData(body).image,
+                pricewatchId: event.pricewatchId
+            };
 
+            const params = {
+                FunctionName: process.env.FUNCTION_PRICEUPDATE_NAME,
+                InvocationType: 'Event',
+                LogType: 'None',
+                Payload: JSON.stringify(payload)
+            };
 
-        lambda.invoke(params, function(err, data) {
-            if (err) {
-                console.log(err)
-                // context.fail(err);
-            } else {
-                console.log(process.env.FUNCTION_PRICEUPDATE_NAME + ' said '+ data.Payload);
-            }
-            callback(null, responseTools.voidSuccessResponse());
-        });
-
+            lambda.invoke(params, function(err, data) {
+                if (err) {
+                    console.log(err)
+                    // context.fail(err);
+                } else {
+                    console.log(process.env.FUNCTION_PRICEUPDATE_NAME + ' said '+ data.Payload);
+                }
+                callback(null, responseTools.voidSuccessResponse());
+            });
+        }
     });
 
-
-
 };
-//

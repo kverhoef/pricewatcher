@@ -35,8 +35,8 @@ export default class PricewatchHeader extends Vue {
 
     created() {
         if (this.pricewatch.initialValue && this.pricewatch.currentValue) {
-            const initialValue = Number.parseFloat(this.pricewatch.initialValue)
-            const currentValue = Number.parseFloat(this.pricewatch.currentValue)
+            const initialValue = this.pricewatch.initialValue;
+            const currentValue = this.pricewatch.currentValue;
             this.percentage = Math.round(1000 / initialValue * (initialValue - currentValue) * -1) / 10;
         }
     }

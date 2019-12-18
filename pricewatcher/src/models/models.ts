@@ -3,8 +3,10 @@ export interface Pricewatch {
     name?: string;
     url?: string;
     xpath?: string;
-    initialValue?: string;
-    currentValue?: string;
-    lowestValue?: string;
-    highestValue?: string;
+    initialValue?: number;
+    currentValue?: number;
+    lowestValue?: number;
+    highestValue?: number;
+    alertValue?: number;
+    alertActive?: boolean;
 }

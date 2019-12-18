@@ -12,10 +12,12 @@ type Pricewatch
     url: String!
     xpath: String!
     img: String
-    initialValue: String
-    currentValue: String
-    lowestValue: String
-    highestValue: String
+    alertValue: Float
+    alertActive: Boolean
+    initialValue: Float
+    currentValue: Float
+    lowestValue: Float
+    highestValue: Float
     values: [WatchValue] @connection(name: "WatchValue")
     owner: String
 }
