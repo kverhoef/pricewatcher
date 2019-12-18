@@ -1,11 +1,21 @@
 module.exports = {
     getOpenGraphData: (html) => {
-        const matchOpenGraph = (html, property) => {
-            const split = html.split(new RegExp('property="' + property + '".*content="(.*)"', 'g'), 2);
-            if (split.length > 1) {
-                const a = split[1].split('"', 2);
-                return a[0];
+
+        const split = (text, separator, returnLeft) => {
+            if (!text) {
+                return;
             }
+            const split = text.split(separator, 2);
+            if (split.length < 2) {
+                return;
+            }
+            return returnLeft ? split[0] : split[1];
+        };
+
+        const matchOpenGraph = (html, property) => {
+            const a = split(html, 'property="' + property + '"', false);
+            const b = split(a, 'content="', false);
+            return split(b, '"', true);
         };
         return {
             image: matchOpenGraph(html, "og:image"),

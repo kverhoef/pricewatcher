@@ -17,6 +17,7 @@ const lambda = new AWS.Lambda();
 exports.handler = function (event, context, callback) { //eslint-disable-line
 
     console.info('Crawler event:', event);
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
     const httpOptions = {
         url: event.url,
@@ -40,6 +41,7 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
 
         if (!event.pricewatchId) {
             console.info('CleanedValue: ' + cleanedValue);
+            console.log(og.getOpenGraphData(body))
             console.warn('No pricewatchId in event. Saving result skipped')
         } else {
 

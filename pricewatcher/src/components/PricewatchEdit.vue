@@ -14,7 +14,39 @@
                 <pricewatch-header :pricewatch="pricewatch"></pricewatch-header>
 
                 <div>
-                    <h2>WatchConfig</h2>
+                    <h2>Price Alert</h2>
+                    <b-form @submit="saveAlert" >
+
+                        <b-form-group
+                                id="alert"
+                                label="AlertValue:"
+                                label-for="alertValue"
+                        >
+                            <b-form-input
+                                    id="alertValue"
+                                    v-model="pricewatch.alertValue"
+                                    type="number"
+                                    required
+                                    placeholder="AlertValue"
+                            ></b-form-input>
+                        </b-form-group>
+
+                        <b-form-group
+                                id="alertActive"
+                                label="AlertActive:"
+                                label-for="alertActive"
+                        >
+                            <b-form-checkbox v-model="pricewatch.alertActive" name="check-button" switch>
+
+                            </b-form-checkbox>
+                        </b-form-group>
+
+                        <b-button type="submit" variant="success" class="btn btn-primary">Save</b-button>
+                    </b-form>
+                </div>
+
+                <div>
+                    <h2>Watch Configurations</h2>
                     <div v-if="pricewatch.config">
                         <div v-for="config in pricewatch.config.items" :key="config.id">
                             <a :href="config.url">{{config.url}}</a>
@@ -23,7 +55,7 @@
                     </div>
                 </div>
                 <div>
-                    <h2>New WatchConfig</h2>
+                    <h2>Add Watch Configurations</h2>
                     <b-form @submit="addConfig" >
 
                         <b-form-group
@@ -73,12 +105,12 @@ import { Component, Vue } from 'vue-property-decorator';
 import API, {  graphqlOperation } from '@aws-amplify/api';
 
 import { getPricewatch } from '@/graphql/queries';
-import {createWatchConfig, deletePricewatch, deleteWatchConfig} from '@/graphql/mutations';
+import {createWatchConfig, deletePricewatch, deleteWatchConfig, updatePricewatch} from '@/graphql/mutations';
 import {DeletePricewatchInput, DeleteWatchConfigInput} from "../API";
 import {GraphQLResult} from "@aws-amplify/api/lib/types";
 import Chart  from './Chart.vue';
 import PricewatchHeader from "@/components/PricewatchHeader.vue";
-import {WatchConfig} from "@/models/models";
+import {Pricewatch, WatchConfig} from "@/models/models";
 
 @Component({
     components: {
@@ -114,6 +146,19 @@ export default class PricewatchList extends Vue {
         await API.graphql(graphqlOperation(createWatchConfig, { input: watchConfig }));
         this.inputModel = {};
         this.getData();
+    }
+
+    saveAlert(event) {
+        event.preventDefault();
+        const input = {
+            id: this.pricewatch.id,
+            alertActive: this.pricewatch.alertActive,
+            alertValue: this.pricewatch.alertValue,
+        };
+        (API.graphql(graphqlOperation(updatePricewatch, { input:input })) as Promise<GraphQLResult>).then((result: any) => {
+            // this.pricewatch = result.data.updatePricewatch;
+            console.log(result)
+        });
     }
 
     getData(){
