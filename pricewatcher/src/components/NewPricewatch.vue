@@ -89,14 +89,14 @@ export default class NewPricewatch extends Vue {
         const pricewatch: Pricewatch = {
             name: this.inputModel.name
         };
-        const labelMatch = this.inputModel.url.match(/^(?:\/\/|[^\\/]+)*/g);
+        // const labelMatch = this.inputModel.url.match(/^(?:\/\/|[^\\/]+)*/g);
 
         const result: any = await API.graphql(graphqlOperation(createPricewatch, { input: pricewatch }));
 
         const watchConfig: WatchConfig = {
             url: this.inputModel.url,
             xpath: this.inputModel.xpath,
-            label: labelMatch[0],
+            label: this.inputModel.url,
             watchConfigPricewatchId: result.data.createPricewatch.id,
         };
 

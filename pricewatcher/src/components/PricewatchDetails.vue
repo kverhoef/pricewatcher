@@ -13,13 +13,19 @@
             <div class="mb-2 col-md-12 pr-1 pb-1 pt-1 pl-3 border bg-white d-flex flex-column">
                 <pricewatch-header :pricewatch="pricewatch"></pricewatch-header>
 
+                <div>Initial price: {{pricewatch.initialValue}}</div>
+                <div>Lowest price: {{pricewatch.lowestValue}}</div>
+
+                <div v-if="pricewatch.config">
+                    <div v-for="config in pricewatch.config.items" :key="config.id">
+                        <a :href="config.url">{{config.url}}</a>
+                    </div>
+                </div>
                 <router-link :to="{ path: '/detail/' + pricewatch.id + '/edit', params: {id: pricewatch.id } }">
                     <i class="fa fa-cog"></i>
                 </router-link>
 
                 <div>
-                    <!--{{$route.params}}-->
-
                     <chart v-if="pricewatch.values !== undefined && pricewatch.values.items.length" :chart-data="pricewatch.values.items"></chart>
                 </div>
 

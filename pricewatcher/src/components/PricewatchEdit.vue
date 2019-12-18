@@ -14,6 +14,52 @@
                 <pricewatch-header :pricewatch="pricewatch"></pricewatch-header>
 
                 <div>
+                    <h2>WatchConfig</h2>
+                    <div v-if="pricewatch.config">
+                        <div v-for="config in pricewatch.config.items" :key="config.id">
+                            <a :href="config.url">{{config.url}}</a>
+                            <button @click="deleteWatchConfig(config)" class="btn btn-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2>New WatchConfig</h2>
+                    <b-form @submit="addConfig" >
+
+                        <b-form-group
+                                id="url"
+                                label="Url:"
+                                label-for="urlInput"
+                        >
+                            <b-form-input
+                                    id="urlInput"
+                                    v-model="inputModel.url"
+                                    type="text"
+                                    required
+                                    placeholder="Url"
+                            ></b-form-input>
+                        </b-form-group>
+
+                        <b-form-group
+                                id="xpath"
+                                label="Xpath:"
+                                label-for="xpathInput"
+                        >
+                            <b-form-input
+                                    id="xpathInput"
+                                    v-model="inputModel.xpath"
+                                    type="text"
+                                    required
+                                    placeholder="Xpath"
+                            ></b-form-input>
+                        </b-form-group>
+
+                        <b-button type="submit" variant="success" class="btn btn-primary">Add</b-button>
+                    </b-form>
+                </div>
+
+                <div>
+                    <h2>Actions</h2>
                     <button @click="deletePricewatch()" class="btn btn-danger">Remove</button>
                 </div>
             </div>
@@ -27,11 +73,12 @@ import { Component, Vue } from 'vue-property-decorator';
 import API, {  graphqlOperation } from '@aws-amplify/api';
 
 import { getPricewatch } from '@/graphql/queries';
-import { deletePricewatch } from '@/graphql/mutations';
-import {DeletePricewatchInput} from "../API";
+import {createWatchConfig, deletePricewatch, deleteWatchConfig} from '@/graphql/mutations';
+import {DeletePricewatchInput, DeleteWatchConfigInput} from "../API";
 import {GraphQLResult} from "@aws-amplify/api/lib/types";
 import Chart  from './Chart.vue';
 import PricewatchHeader from "@/components/PricewatchHeader.vue";
+import {WatchConfig} from "@/models/models";
 
 @Component({
     components: {
@@ -41,10 +88,44 @@ import PricewatchHeader from "@/components/PricewatchHeader.vue";
 export default class PricewatchList extends Vue {
     pricewatch;
 
+    inputModel: any = {
+        xpath: '',
+        url: ''
+    };
+
     data() {
         return {
             pricewatch: 'Pricewatch'
         }
+    }
+
+    created() {
+        this.getData();
+    }
+
+    async addConfig(evt) {
+        evt.preventDefault();
+        const watchConfig: WatchConfig = {
+            url: this.inputModel.url,
+            xpath: this.inputModel.xpath,
+            label: this.inputModel.url,
+            watchConfigPricewatchId: this.pricewatch.id,
+        };
+        await API.graphql(graphqlOperation(createWatchConfig, { input: watchConfig }));
+        this.inputModel = {};
+        this.getData();
+    }
+
+    getData(){
+        (API.graphql(graphqlOperation(getPricewatch, { id: this.$route.params.id })) as Promise<GraphQLResult>).then((result: any) => {
+            this.pricewatch = result.data.getPricewatch;
+        });
+    }
+
+    async deleteWatchConfig(watchConfig) {
+        const model: DeleteWatchConfigInput = {id: watchConfig.id};
+        await API.graphql(graphqlOperation(deleteWatchConfig, { input: model } ))
+        this.getData();
     }
 
     async deletePricewatch() {
