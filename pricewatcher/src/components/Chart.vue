@@ -39,13 +39,15 @@ export default class Chart extends Vue {
     }
 
     getData() {
-        this.chartData = this.chartData.sort((a, b) => a.date - b.date );
-        this.series = [
-            {
-                // name: "Low - 2013",
-                data: this.chartData.map((d) => d.value)
-            }
-        ];
+
+        const uniqueSeries = [...new Set(this.chartData.map((d) => d.label))]
+
+        this.series = uniqueSeries.map((serie) => {
+          return {
+            name: serie,
+            data: this.chartData.filter((d) => d.label === serie).sort((a, b) => a.date - b.date ).map((d) => d.value),
+          }
+        });
         this.chartOptions = {
             chart: {
                 shadow: {
@@ -66,7 +68,7 @@ export default class Chart extends Vue {
                 align: 'left'
             },
             tooltip: {
-                enabled: false,
+                enabled: true,
             },
             markers: {
                 size: 6,
