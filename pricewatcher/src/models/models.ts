@@ -9,4 +9,13 @@ export interface Pricewatch {
     highestValue?: number;
     alertValue?: number;
     alertActive?: boolean;
+    config?: any
+}
+
+export interface WatchConfig {
+    id? :string;
+    url: string;
+    xpath: string;
+    label: string;
+    watchConfigPricewatchId: string;
 }

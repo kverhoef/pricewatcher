@@ -10,9 +10,26 @@ module.exports = {
       name
       url
       xpath
+      img
+      alertValue
+      alertActive
+      initialValue
+      currentValue
+      lowestValue
+      highestValue
+      owner
+      config {
+        items {
+            id
+            url
+            xpath
+            label
+            owner
+        }
+      }
     }
     nextToken
   }
 }
-    `
+`
 }

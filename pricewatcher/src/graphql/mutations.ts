@@ -11,16 +11,29 @@ export const createPricewatch = `mutation CreatePricewatch(
     url
     xpath
     img
+    alertValue
+    alertActive
     initialValue
     currentValue
     lowestValue
     highestValue
     owner
+    config {
+      items {
+        id
+        url
+        xpath
+        label
+        owner
+      }
+      nextToken
+    }
     values {
       items {
         id
         date
         value
+        label
         owner
       }
       nextToken
@@ -38,16 +51,29 @@ export const updatePricewatch = `mutation UpdatePricewatch(
     url
     xpath
     img
+    alertValue
+    alertActive
     initialValue
     currentValue
     lowestValue
     highestValue
     owner
+    config {
+      items {
+        id
+        url
+        xpath
+        label
+        owner
+      }
+      nextToken
+    }
     values {
       items {
         id
         date
         value
+        label
         owner
       }
       nextToken
@@ -65,19 +91,131 @@ export const deletePricewatch = `mutation DeletePricewatch(
     url
     xpath
     img
+    alertValue
+    alertActive
     initialValue
     currentValue
     lowestValue
     highestValue
     owner
+    config {
+      items {
+        id
+        url
+        xpath
+        label
+        owner
+      }
+      nextToken
+    }
     values {
       items {
         id
         date
         value
+        label
         owner
       }
       nextToken
+    }
+  }
+}
+`;
+export const createWatchConfig = `mutation CreateWatchConfig(
+  $input: CreateWatchConfigInput!
+  $condition: ModelWatchConfigConditionInput
+) {
+  createWatchConfig(input: $input, condition: $condition) {
+    id
+    url
+    xpath
+    label
+    owner
+    pricewatch {
+      id
+      name
+      url
+      xpath
+      img
+      alertValue
+      alertActive
+      initialValue
+      currentValue
+      lowestValue
+      highestValue
+      owner
+      config {
+        nextToken
+      }
+      values {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updateWatchConfig = `mutation UpdateWatchConfig(
+  $input: UpdateWatchConfigInput!
+  $condition: ModelWatchConfigConditionInput
+) {
+  updateWatchConfig(input: $input, condition: $condition) {
+    id
+    url
+    xpath
+    label
+    owner
+    pricewatch {
+      id
+      name
+      url
+      xpath
+      img
+      alertValue
+      alertActive
+      initialValue
+      currentValue
+      lowestValue
+      highestValue
+      owner
+      config {
+        nextToken
+      }
+      values {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deleteWatchConfig = `mutation DeleteWatchConfig(
+  $input: DeleteWatchConfigInput!
+  $condition: ModelWatchConfigConditionInput
+) {
+  deleteWatchConfig(input: $input, condition: $condition) {
+    id
+    url
+    xpath
+    label
+    owner
+    pricewatch {
+      id
+      name
+      url
+      xpath
+      img
+      alertValue
+      alertActive
+      initialValue
+      currentValue
+      lowestValue
+      highestValue
+      owner
+      config {
+        nextToken
+      }
+      values {
+        nextToken
+      }
     }
   }
 }
@@ -90,6 +228,7 @@ export const createWatchValue = `mutation CreateWatchValue(
     id
     date
     value
+    label
     owner
     pricewatch {
       id
@@ -97,11 +236,16 @@ export const createWatchValue = `mutation CreateWatchValue(
       url
       xpath
       img
+      alertValue
+      alertActive
       initialValue
       currentValue
       lowestValue
       highestValue
       owner
+      config {
+        nextToken
+      }
       values {
         nextToken
       }
@@ -117,6 +261,7 @@ export const updateWatchValue = `mutation UpdateWatchValue(
     id
     date
     value
+    label
     owner
     pricewatch {
       id
@@ -124,11 +269,16 @@ export const updateWatchValue = `mutation UpdateWatchValue(
       url
       xpath
       img
+      alertValue
+      alertActive
       initialValue
       currentValue
       lowestValue
       highestValue
       owner
+      config {
+        nextToken
+      }
       values {
         nextToken
       }
@@ -144,6 +294,7 @@ export const deleteWatchValue = `mutation DeleteWatchValue(
     id
     date
     value
+    label
     owner
     pricewatch {
       id
@@ -151,11 +302,16 @@ export const deleteWatchValue = `mutation DeleteWatchValue(
       url
       xpath
       img
+      alertValue
+      alertActive
       initialValue
       currentValue
       lowestValue
       highestValue
       owner
+      config {
+        nextToken
+      }
       values {
         nextToken
       }

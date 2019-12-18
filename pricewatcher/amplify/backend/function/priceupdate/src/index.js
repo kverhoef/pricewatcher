@@ -40,12 +40,6 @@ const createApiRequest = (query, operationName, variables) => {
     return new Promise((resolve, reject) => {
         const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
             result.on('data', (data) => {
-                // console.log(JSON.parse(data.toString()));
-                //
-                // const pricewatch = JSON.parse(data.toString()).data.getPricewatch;
-                // // pricewatch.values.push({date: new Date().getTime(), value: event.value})
-                // console.log(pricewatch)
-                // // TODO add pricewatch
                 resolve(JSON.parse(data.toString()));
             });
         });
@@ -94,7 +88,8 @@ exports.handler = async (event) => {
             date: new Date().getTime().toString(),
             watchValuePricewatchId: event.pricewatchId,
             value: event.value,
-            owner: priceWatch.owner
+            owner: priceWatch.owner,
+            label: event.label
         }
     });
 

@@ -54,27 +54,31 @@ exports.handler = function (event, context, callback) {
 
         data.data.listPricewatchs.items.forEach((pricewatch) => {
             console.log(pricewatch);
-            const payload = {
-                xpath: pricewatch.xpath,
-                url: pricewatch.url,
-                pricewatchId: pricewatch.id
-            };
 
-            const params = {
-                FunctionName: process.env.FUNCTION_CRAWLER_NAME,
-                InvocationType: 'Event',
-                LogType: 'None',
-                Payload: JSON.stringify(payload)
-            };
+            pricewatch.config.items.forEach((watchConfig) => {
+                const payload = {
+                    xpath: watchConfig.xpath,
+                    url: watchConfig.url,
+                    pricewatchId: pricewatch.id,
+                    label: watchConfig.label
+                };
 
-            lambdaInvocations.push(lambda.invoke(params, function(err, data) {
-                if (err) {
-                    console.log(err)
-                } else {
-                    // console.log(process.env.FUNCTION_CRAWLER_NAME + ' said '+ data.Payload);
-                }
-            }));
+                const params = {
+                    FunctionName: process.env.FUNCTION_CRAWLER_NAME,
+                    InvocationType: 'Event',
+                    LogType: 'None',
+                    Payload: JSON.stringify(payload)
+                };
 
+                lambdaInvocations.push(lambda.invoke(params, function(err, data) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        // console.log(process.env.FUNCTION_CRAWLER_NAME + ' said '+ data.Payload);
+                    }
+                }));
+
+            });
         });
         Promise.all(lambdaInvocations).then(() => {
             callback(null, {

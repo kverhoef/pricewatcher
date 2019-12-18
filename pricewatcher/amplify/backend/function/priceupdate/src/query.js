@@ -43,6 +43,7 @@ module.exports = {
         date
         value
         owner
+        label
         pricewatch {
           id
           name

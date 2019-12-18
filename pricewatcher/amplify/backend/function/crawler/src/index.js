@@ -46,7 +46,8 @@ exports.handler = function (event, context, callback) { //eslint-disable-line
             const payload = {
                 value: cleanedValue,
                 img: og.getOpenGraphData(body).image,
-                pricewatchId: event.pricewatchId
+                pricewatchId: event.pricewatchId,
+                label: event.label
             };
 
             const params = {

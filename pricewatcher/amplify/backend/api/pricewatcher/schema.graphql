@@ -19,6 +19,23 @@ type Pricewatch
     lowestValue: Float
     highestValue: Float
     values: [WatchValue] @connection(name: "WatchValue")
+    config: [WatchConfig] @connection(name: "WatchConfig")
+    owner: String
+}
+
+type WatchConfig
+    @model
+    @auth(
+        rules: [
+            {allow: owner, ownerField: "owner", operations: [create, update, delete, read]},
+            {allow: private, provider: iam, operations: [read, create, update, delete] }
+        ])
+{
+    id: ID!
+    url: String!
+    xpath: String!
+    label: String!
+    pricewatch: Pricewatch @connection(name: "WatchConfig")
     owner: String
 }
 
@@ -32,11 +49,8 @@ type WatchValue
 {
     id: ID!
     date: String!
-    value: String!
+    value: Float!
+    label: String!
     pricewatch: Pricewatch @connection(name: "WatchValue")
     owner: String
-}
-
-type Query {
-  echo(msg: String): String @function(name: "nightly-${env}")
 }

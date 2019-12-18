@@ -17,7 +17,7 @@
                     >
                         <b-form-input
                                 id="nameInput"
-                                v-model="pricewatch.name"
+                                v-model="inputModel.name"
                                 type="text"
                                 required
                                 placeholder="Name"
@@ -31,7 +31,7 @@
                     >
                         <b-form-input
                                 id="urlInput"
-                                v-model="pricewatch.url"
+                                v-model="inputModel.url"
                                 type="text"
                                 required
                                 placeholder="Url"
@@ -45,7 +45,7 @@
                     >
                         <b-form-input
                                 id="xpathInput"
-                                v-model="pricewatch.xpath"
+                                v-model="inputModel.xpath"
                                 type="text"
                                 required
                                 placeholder="Xpath"
@@ -62,10 +62,8 @@
 <script lang="ts">
 import { Component, Vue, Inject } from 'vue-property-decorator';
 import API, {  graphqlOperation } from '@aws-amplify/api';
-
-import { listPricewatchs } from '@/graphql/queries';
-import {createPricewatch} from "../graphql/mutations";
-import {Pricewatch} from "../models/models";
+import {createPricewatch, createWatchConfig} from "../graphql/mutations";
+import {Pricewatch, WatchConfig} from "../models/models";
 import {BvToast} from "bootstrap-vue";
 
 @Component({
@@ -76,7 +74,7 @@ export default class NewPricewatch extends Vue {
     @Inject() public readonly $bvToast!: BvToast;
 
 
-    pricewatch: Pricewatch = {
+    inputModel: any = {
         name: '',
         xpath: '',
         url: ''
@@ -88,7 +86,24 @@ export default class NewPricewatch extends Vue {
         evt.preventDefault()
         this.isSaving = true;
 
-        await API.graphql(graphqlOperation(createPricewatch, { input: this.pricewatch }));
+        const pricewatch: Pricewatch = {
+            name: this.inputModel.name,
+            url: 'TODO: remove',
+            xpath: 'TODO: remove'
+        };
+        const labelMatch = this.inputModel.url.match(/^(?:\/\/|[^\\/]+)*/g);
+
+        const result: any = await API.graphql(graphqlOperation(createPricewatch, { input: pricewatch }));
+
+        const watchConfig: WatchConfig = {
+            url: this.inputModel.url,
+            xpath: this.inputModel.xpath,
+            label: labelMatch[0],
+            watchConfigPricewatchId: result.data.createPricewatch.id,
+        };
+
+        await API.graphql(graphqlOperation(createWatchConfig, { input: watchConfig }));
+
         this.$bvToast.toast('New entry saved', {
             title: 'Save successful',
             autoHideDelay: 2000,
@@ -99,7 +114,7 @@ export default class NewPricewatch extends Vue {
     }
 
     emptyForm() {
-        this.pricewatch = {};
+        this.inputModel = {};
     }
 
 }

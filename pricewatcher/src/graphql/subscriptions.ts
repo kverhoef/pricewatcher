@@ -8,16 +8,29 @@ export const onCreatePricewatch = `subscription OnCreatePricewatch($owner: Strin
     url
     xpath
     img
+    alertValue
+    alertActive
     initialValue
     currentValue
     lowestValue
     highestValue
     owner
+    config {
+      items {
+        id
+        url
+        xpath
+        label
+        owner
+      }
+      nextToken
+    }
     values {
       items {
         id
         date
         value
+        label
         owner
       }
       nextToken
@@ -32,16 +45,29 @@ export const onUpdatePricewatch = `subscription OnUpdatePricewatch($owner: Strin
     url
     xpath
     img
+    alertValue
+    alertActive
     initialValue
     currentValue
     lowestValue
     highestValue
     owner
+    config {
+      items {
+        id
+        url
+        xpath
+        label
+        owner
+      }
+      nextToken
+    }
     values {
       items {
         id
         date
         value
+        label
         owner
       }
       nextToken
@@ -56,19 +82,122 @@ export const onDeletePricewatch = `subscription OnDeletePricewatch($owner: Strin
     url
     xpath
     img
+    alertValue
+    alertActive
     initialValue
     currentValue
     lowestValue
     highestValue
     owner
+    config {
+      items {
+        id
+        url
+        xpath
+        label
+        owner
+      }
+      nextToken
+    }
     values {
       items {
         id
         date
         value
+        label
         owner
       }
       nextToken
+    }
+  }
+}
+`;
+export const onCreateWatchConfig = `subscription OnCreateWatchConfig($owner: String!) {
+  onCreateWatchConfig(owner: $owner) {
+    id
+    url
+    xpath
+    label
+    owner
+    pricewatch {
+      id
+      name
+      url
+      xpath
+      img
+      alertValue
+      alertActive
+      initialValue
+      currentValue
+      lowestValue
+      highestValue
+      owner
+      config {
+        nextToken
+      }
+      values {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onUpdateWatchConfig = `subscription OnUpdateWatchConfig($owner: String!) {
+  onUpdateWatchConfig(owner: $owner) {
+    id
+    url
+    xpath
+    label
+    owner
+    pricewatch {
+      id
+      name
+      url
+      xpath
+      img
+      alertValue
+      alertActive
+      initialValue
+      currentValue
+      lowestValue
+      highestValue
+      owner
+      config {
+        nextToken
+      }
+      values {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onDeleteWatchConfig = `subscription OnDeleteWatchConfig($owner: String!) {
+  onDeleteWatchConfig(owner: $owner) {
+    id
+    url
+    xpath
+    label
+    owner
+    pricewatch {
+      id
+      name
+      url
+      xpath
+      img
+      alertValue
+      alertActive
+      initialValue
+      currentValue
+      lowestValue
+      highestValue
+      owner
+      config {
+        nextToken
+      }
+      values {
+        nextToken
+      }
     }
   }
 }
@@ -78,6 +207,7 @@ export const onCreateWatchValue = `subscription OnCreateWatchValue($owner: Strin
     id
     date
     value
+    label
     owner
     pricewatch {
       id
@@ -85,11 +215,16 @@ export const onCreateWatchValue = `subscription OnCreateWatchValue($owner: Strin
       url
       xpath
       img
+      alertValue
+      alertActive
       initialValue
       currentValue
       lowestValue
       highestValue
       owner
+      config {
+        nextToken
+      }
       values {
         nextToken
       }
@@ -102,6 +237,7 @@ export const onUpdateWatchValue = `subscription OnUpdateWatchValue($owner: Strin
     id
     date
     value
+    label
     owner
     pricewatch {
       id
@@ -109,11 +245,16 @@ export const onUpdateWatchValue = `subscription OnUpdateWatchValue($owner: Strin
       url
       xpath
       img
+      alertValue
+      alertActive
       initialValue
       currentValue
       lowestValue
       highestValue
       owner
+      config {
+        nextToken
+      }
       values {
         nextToken
       }
@@ -126,6 +267,7 @@ export const onDeleteWatchValue = `subscription OnDeleteWatchValue($owner: Strin
     id
     date
     value
+    label
     owner
     pricewatch {
       id
@@ -133,11 +275,16 @@ export const onDeleteWatchValue = `subscription OnDeleteWatchValue($owner: Strin
       url
       xpath
       img
+      alertValue
+      alertActive
       initialValue
       currentValue
       lowestValue
       highestValue
       owner
+      config {
+        nextToken
+      }
       values {
         nextToken
       }
