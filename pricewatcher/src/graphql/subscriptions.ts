@@ -5,8 +5,6 @@ export const onCreatePricewatch = `subscription OnCreatePricewatch($owner: Strin
   onCreatePricewatch(owner: $owner) {
     id
     name
-    url
-    xpath
     img
     alertValue
     alertActive
@@ -42,8 +40,6 @@ export const onUpdatePricewatch = `subscription OnUpdatePricewatch($owner: Strin
   onUpdatePricewatch(owner: $owner) {
     id
     name
-    url
-    xpath
     img
     alertValue
     alertActive
@@ -79,8 +75,6 @@ export const onDeletePricewatch = `subscription OnDeletePricewatch($owner: Strin
   onDeletePricewatch(owner: $owner) {
     id
     name
-    url
-    xpath
     img
     alertValue
     alertActive
@@ -122,8 +116,6 @@ export const onCreateWatchConfig = `subscription OnCreateWatchConfig($owner: Str
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -152,8 +144,6 @@ export const onUpdateWatchConfig = `subscription OnUpdateWatchConfig($owner: Str
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -182,8 +172,6 @@ export const onDeleteWatchConfig = `subscription OnDeleteWatchConfig($owner: Str
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -212,8 +200,6 @@ export const onCreateWatchValue = `subscription OnCreateWatchValue($owner: Strin
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -242,8 +228,6 @@ export const onUpdateWatchValue = `subscription OnUpdateWatchValue($owner: Strin
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -272,8 +256,6 @@ export const onDeleteWatchValue = `subscription OnDeleteWatchValue($owner: Strin
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive

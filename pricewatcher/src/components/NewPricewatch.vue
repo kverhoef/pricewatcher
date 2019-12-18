@@ -87,9 +87,7 @@ export default class NewPricewatch extends Vue {
         this.isSaving = true;
 
         const pricewatch: Pricewatch = {
-            name: this.inputModel.name,
-            url: 'TODO: remove',
-            xpath: 'TODO: remove'
+            name: this.inputModel.name
         };
         const labelMatch = this.inputModel.url.match(/^(?:\/\/|[^\\/]+)*/g);
 

@@ -8,8 +8,6 @@ module.exports = {
     items {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive

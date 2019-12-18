@@ -5,7 +5,7 @@
         <div class="flex-grow-1 flex-schrink-1 d-flex align-items-center title mr-2">
             <div class="d-flex flex-column">
                 <span><router-link :to="{ path: '/detail/' + pricewatch.id, params: {id: pricewatch.id } }" class="nav-link pl-0">{{pricewatch.name}}</router-link></span>
-                <a class="url" :href="pricewatch.url" target="_blank">{{pricewatch.url}}</a>
+<!--                <a class="url" :href="pricewatch.url" target="_blank">{{pricewatch.url}}</a>-->
             </div>
         </div>
         <div class="flex-grow-1 flex-schrink-0 text-right pr-3">

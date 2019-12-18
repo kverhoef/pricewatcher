@@ -8,8 +8,6 @@ export const createPricewatch = `mutation CreatePricewatch(
   createPricewatch(input: $input, condition: $condition) {
     id
     name
-    url
-    xpath
     img
     alertValue
     alertActive
@@ -48,8 +46,6 @@ export const updatePricewatch = `mutation UpdatePricewatch(
   updatePricewatch(input: $input, condition: $condition) {
     id
     name
-    url
-    xpath
     img
     alertValue
     alertActive
@@ -88,8 +84,6 @@ export const deletePricewatch = `mutation DeletePricewatch(
   deletePricewatch(input: $input, condition: $condition) {
     id
     name
-    url
-    xpath
     img
     alertValue
     alertActive
@@ -134,8 +128,6 @@ export const createWatchConfig = `mutation CreateWatchConfig(
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -167,8 +159,6 @@ export const updateWatchConfig = `mutation UpdateWatchConfig(
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -200,8 +190,6 @@ export const deleteWatchConfig = `mutation DeleteWatchConfig(
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -233,8 +221,6 @@ export const createWatchValue = `mutation CreateWatchValue(
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -266,8 +252,6 @@ export const updateWatchValue = `mutation UpdateWatchValue(
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -299,8 +283,6 @@ export const deleteWatchValue = `mutation DeleteWatchValue(
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive

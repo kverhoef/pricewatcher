@@ -6,8 +6,6 @@ module.exports = {
           updatePricewatch(input: $input, condition: $condition) {
             id
             name
-            url
-            xpath
             img
             currentValue
             lowestValue
@@ -20,17 +18,12 @@ module.exports = {
       getPricewatch(id: $id) {
         id
         name
-        url
-        xpath
         owner
-        values {
-          items {
-            id
-            date
-            value
-          }
-          nextToken
-        }
+        img
+        currentValue
+        lowestValue
+        highestValue
+        initialValue
       }
     }
     `,
@@ -47,8 +40,6 @@ module.exports = {
         pricewatch {
           id
           name
-          url
-          xpath
           values {
             nextToken
           }

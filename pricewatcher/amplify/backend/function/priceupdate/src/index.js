@@ -93,7 +93,7 @@ exports.handler = async (event) => {
         }
     });
 
-    // console.log(data)
+    console.log(data)
 
     return {
         statusCode: 200,

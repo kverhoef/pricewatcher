@@ -77,7 +77,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-pricewatcher-kevin-112832-deployment",
-					"S3Key": "amplify-builds/priceupdate-4c497379595058616942-build.zip"
+					"S3Key": "amplify-builds/priceupdate-4246475a3648724b5253-build.zip"
 				}
 			}
 		},

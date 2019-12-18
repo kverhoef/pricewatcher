@@ -9,8 +9,6 @@ type Pricewatch
 {
     id: ID!
     name: String!
-    url: String!
-    xpath: String!
     img: String
     alertValue: Float
     alertActive: Boolean

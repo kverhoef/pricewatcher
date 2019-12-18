@@ -10,8 +10,6 @@ export const listPricewatchs = `query ListPricewatchs(
     items {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -35,8 +33,6 @@ export const getPricewatch = `query GetPricewatch($id: ID!) {
   getPricewatch(id: $id) {
     id
     name
-    url
-    xpath
     img
     alertValue
     alertActive
@@ -78,8 +74,6 @@ export const getWatchConfig = `query GetWatchConfig($id: ID!) {
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -113,8 +107,6 @@ export const listWatchConfigs = `query ListWatchConfigs(
       pricewatch {
         id
         name
-        url
-        xpath
         img
         alertValue
         alertActive
@@ -139,8 +131,6 @@ export const getWatchValue = `query GetWatchValue($id: ID!) {
     pricewatch {
       id
       name
-      url
-      xpath
       img
       alertValue
       alertActive
@@ -174,8 +164,6 @@ export const listWatchValues = `query ListWatchValues(
       pricewatch {
         id
         name
-        url
-        xpath
         img
         alertValue
         alertActive
